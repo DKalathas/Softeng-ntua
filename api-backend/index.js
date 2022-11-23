@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require("body-parser");
-const routes=require("./routes/api")
+const bodyParser = require('body-parser');
+const routes = require('./routes/api');
 var cors = require('cors');
 
 // express app
@@ -13,7 +13,7 @@ const dbURI = "mongodb://docker:mongopw@localhost:55002/Softeng?authSource=admin
 
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(result => app.listen(4000))
-  .then(result=>console.log("database okey"))
+  .then(result => console.log("database okey"))
   .catch(err => console.log(err));
 
 
@@ -23,10 +23,10 @@ app.use(cors());
 
 
 //initialize routes
-app.use("/intelliq_api",routes);
+app.use("/intelliq_api", routes);
 
 //error handling middleware
-app.use(function(err,req,res,next){
+app.use(function(err, req, res, next) {
     //console.log(err);
-    res.status(422).send({error:err.message})
+    res.status(422).send( { error:err.message } )
     });
