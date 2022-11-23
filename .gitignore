@@ -1,3 +1,2 @@
-.gitignore
-
 api-backend/node_modules
+api-backend/.env
