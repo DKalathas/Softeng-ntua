@@ -1,4 +1,6 @@
 const Questionnaire = require("../models/questionnaire");
+const mongoose = require('mongoose');
+require('dotenv').config();
 
 
 const post_questionnaire = (req, res, next) => {
@@ -14,5 +16,6 @@ const get_healthcheck =(req,res)=>{
         }
 
 module.exports={
-    post_questionnaire
+    post_questionnaire,
+    get_healthcheck
 }
