@@ -14,9 +14,8 @@ const dbURI = process.env.DATABASE_URI;
 
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(result => app.listen(4000))
-  .then(result => console.log("database okey"))
+  .then(result => console.log("database okay"))
   .catch(err => console.log(err));
-
 
 //take data from request
 app.use(bodyParser.json());

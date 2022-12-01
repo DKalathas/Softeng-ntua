@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico:wght@100;400&display=swap');
+
+.Admin{
+    font-family: Pacifico;
+    background-color: #14342B;
+    color: #B2AF06;
+    min-height:100vh;
+}
+
+.heading{
+    padding-top: 3%;
+    margin-bottom: 3%;
+}
+
+.home{
+        color:#B2AF06;
+        margin-left: 40%;
+        margin-right: 0;
+        padding:0%;
+        border:#14342B;
+        background-color: inherit;
+        font-size: 20px;
+      }
+
+.home:hover{
+    text-decoration: underline;
+}
+
+.crd1{
+    border-color: #B2AF06;
+    border-style: solid;
+    border-radius: 10px;
+    margin-left: 15%;
+    margin-right:15%;
+    margin-bottom: 2%;
+    padding: 5px;
+}
+
+.btn2{
+    background-color: #B2AF06;
+}
+
+.wobble-hor-top:hover {
+	-webkit-animation: wobble-hor-top 0.4s both;
+	        animation: wobble-hor-top 0.4s both;
+}
+
+@-webkit-keyframes wobble-hor-top {
+    0%,
+    100% {
+      -webkit-transform: translateX(0%);
+              transform: translateX(0%);
+      -webkit-transform-origin: 50% 50%;
+              transform-origin: 50% 50%;
+    }
+    15% {
+      -webkit-transform: translateX(-30px) rotate(6deg);
+              transform: translateX(-30px) rotate(6deg);
+    }
+    30% {
+      -webkit-transform: translateX(15px) rotate(-6deg);
+              transform: translateX(15px) rotate(-6deg);
+    }
+    45% {
+      -webkit-transform: translateX(-15px) rotate(3.6deg);
+              transform: translateX(-15px) rotate(3.6deg);
+    }
+    60% {
+      -webkit-transform: translateX(9px) rotate(-2.4deg);
+              transform: translateX(9px) rotate(-2.4deg);
+    }
+    75% {
+      -webkit-transform: translateX(-6px) rotate(1.2deg);
+              transform: translateX(-6px) rotate(1.2deg);
+    }
+  }
+  @keyframes wobble-hor-top {
+    0%,
+    100% {
+      -webkit-transform: translateX(0%);
+              transform: translateX(0%);
+      -webkit-transform-origin: 50% 50%;
+              transform-origin: 50% 50%;
+    }
+    15% {
+      -webkit-transform: translateX(-30px) rotate(6deg);
+              transform: translateX(-30px) rotate(6deg);
+    }
+    30% {
+      -webkit-transform: translateX(15px) rotate(-6deg);
+              transform: translateX(15px) rotate(-6deg);
+    }
+    45% {
+      -webkit-transform: translateX(-15px) rotate(3.6deg);
+              transform: translateX(-15px) rotate(3.6deg);
+    }
+    60% {
+      -webkit-transform: translateX(9px) rotate(-2.4deg);
+              transform: translateX(9px) rotate(-2.4deg);
+    }
+    75% {
+      -webkit-transform: translateX(-6px) rotate(1.2deg);
+              transform: translateX(-6px) rotate(1.2deg);
+    }
+  }
+  
+

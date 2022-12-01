@@ -7,6 +7,16 @@ const post_questionnaire = (req, res, next) => {
     }).catch(next);
 }
 
+const resetall = (req,res,next)=>{
+    Questionnaire.remove({},function (err, result) {
+        if (err){
+            res.json({status:'failed',reason:err})
+        }else{
+            res.json({status:'OK'})
+        }
+    });
+}
 module.exports={
-    post_questionnaire
+    post_questionnaire,
+    resetall
 }
