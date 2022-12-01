@@ -26,10 +26,11 @@ const get_healthcheck =(req,res)=>{
         }
 
 const addAnswer = async (req, res, next) => {
-    Answer.create(req.body).then(function(answer) {
+    Answer.create(req.params).then(function(answer) {
         res.send(answer);
     }).catch(next);
-  };
+      };
+
   
 
 module.exports={
