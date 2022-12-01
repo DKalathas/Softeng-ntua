@@ -1,6 +1,5 @@
 const express = require('express');
 const router =  express.Router();
-const Questionnaire = require('../models/questionnaire');
 const controllers = require('../controllers/controllers');
 
 
@@ -11,6 +10,7 @@ router.get("/admin/healthcheck", controllers.get_healthcheck);
 router.post("/admin/questionnaire_upd", controllers.post_questionnaire);
 // reset all
 router.post("/admin/resetall",controllers.resetall);
+//reset answers per q
 
 
 

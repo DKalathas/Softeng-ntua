@@ -8,15 +8,15 @@ const post_questionnaire = (req, res, next) => {
     }).catch(next);
 }
 
-const resetall = (req,res,next)=>{
-    Questionnaire.remove({},function (err, result) {
-        if (err){
-            res.json({status:'failed',reason:err})
-        }else{
-            res.json({status:'OK'})
-        }
-    });
-}
+const resetall = async (req,res,next)=>{
+    try{
+        await Questionnaire.deleteMany();
+        await Answer.deleteMany();
+        res.json({status:'OK'});
+    }catch(err){
+        res.json({status:'Failed',reason:err});
+    }
+};
 
 const get_healthcheck =(req,res)=>{
     mongoose.connect(process.env.DATABASE_URI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -30,6 +30,7 @@ const addAnswer = async (req, res, next) => {
         res.send(answer);
     }).catch(next);
       };
+
 
   
 
