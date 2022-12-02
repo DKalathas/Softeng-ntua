@@ -8,7 +8,7 @@ const post_questionnaire = (req, res, next) => {
     }).catch(next);
 }
 
-const resetall = async (req,res,next)=>{
+const resetall = async (req,res)=>{
     try{
         await Questionnaire.deleteMany();
         await Answer.deleteMany();
@@ -25,6 +25,16 @@ const get_healthcheck =(req,res)=>{
         res.send({"status":"failed", "dbconnection":process.env.DATABASE_URI})})
         }
 
+const resetq = async (req,res)=>{
+    const ID = req.params; 
+    try{
+        await Answer.deleteMany({qID:ID})
+        res.json({status:'OK'});
+    }catch(err){
+        res.json({status:'Failed',reason:err});
+    }
+}
+
 const addAnswer = async (req, res, next) => {
     Answer.create(req.params).then(function(answer) {
         res.send(answer);
@@ -38,5 +48,6 @@ module.exports={
     post_questionnaire,
     resetall,
     get_healthcheck,
-    addAnswer
+    addAnswer,
+    resetq
 }
