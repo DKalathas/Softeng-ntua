@@ -10,9 +10,8 @@ router.get("/admin/healthcheck", controllers.get_healthcheck);
 router.post("/admin/questionnaire_upd", controllers.post_questionnaire);
 // reset all
 router.post("/admin/resetall",controllers.resetall);
-//reset answers per q
-
-
+//reset answers per question
+router.post("/admin/resetq/:questionnaireID",controllers.resetq);
 
 //------------------------------------------------Functional-------------------------------------------
 //get questionnaire based on qID
