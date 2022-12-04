@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico:wght@100;400&display=swap');
+
+.bd{
+  width: 100%;
+  padding:0px;
+  margin-bottom: 0;
+  font-family: 'Pacifico';
+  background: linear-gradient(90deg, #14342B 50%, #B2AF06 50%);
+  min-height: 100vh;
+}
+
+.Home{
+  width: 100%;
+  min-height: 100vh;
+}
+
+.title{
+  color:#14342B;
+  font-family: 'Pacifico';
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  margin-top: 20%;
+}
+
+.buttons{
+  margin-top: 20%;
+  height:100%;
+  color:#B2AF06;
+  font-family: 'Pacifico';
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn1{
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 10%;
+  background-color: #B2AF06;
+  color: #14342B;
+  border-radius: 10px;
+}
+
+.size{
+  font-size: 60px;
+}
+
+.size1{
+  text-shadow: -2px -7px 17px rgba(0,0,0,0.51);
+  font-size: 72px;
+  font-weight: 50;
+  font-style: italic;
+}
+
+.row{
+  margin:0%;
+}
+
+.scale-in-center{
+  -webkit-animation:scale-in-center .5s cubic-bezier(.25,.46,.45,.94) both;
+  animation:scale-in-center .5s cubic-bezier(.25,.46,.45,.94) both;
+}
+@-webkit-keyframes scale-in-center{
+  0%{
+    -webkit-transform:scale(0);
+    transform:scale(0);
+    opacity:1
+  }
+  100%{
+    -webkit-transform:scale(1);
+    transform:scale(1);
+    opacity:1}
+  }
+@keyframes scale-in-center{
+  0%{
+  -webkit-transform:scale(0);
+  transform:scale(0);
+  opacity:1
+}
+  100%{
+    -webkit-transform:scale(1);
+    transform:scale(1);
+    opacity:1}
+  }
+  
+  .jello-horizontal:hover {
+    animation: jello-horizontal 0.9s both;
+  }
+
+  @keyframes jello-horizontal {
+    0% {
+      transform: scale3d(1, 1, 1);
+    }
+    30% {
+      transform: scale3d(1.25, 0.75, 1);
+    }
+    40% {
+      transform: scale3d(0.75, 1.25, 1);
+    }
+    50% {
+      transform: scale3d(1.15, 0.85, 1);
+    }
+    65% {
+      transform: scale3d(0.95, 1.05, 1);
+    }
+    75% {
+      transform: scale3d(1.05, 0.95, 1);
+    }
+    100% {
+      transform: scale3d(1, 1, 1);
+    }
+  }
+
+  
+
