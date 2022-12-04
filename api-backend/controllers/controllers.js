@@ -1,4 +1,5 @@
 const Questionnaire = require("../models/questionnaire");
+const Answer = require("../models/answers")
 const mongoose = require('mongoose');
 require('dotenv').config();
 
@@ -15,7 +16,41 @@ const get_healthcheck =(req,res)=>{
         res.send({"status":"failed", "dbconnection":process.env.DATABASE_URI})})
         }
 
+const resetall = async (req,res)=>{
+    try{
+        await Questionnaire.deleteMany();
+        await Answer.deleteMany();
+        res.json({status:'OK'});
+    }catch(err){
+        res.json({status:'Failed',reason:err});
+    }
+};
+
+const resetq = async (req,res)=>{
+    const ID = req.params; 
+    try{
+        await Answer.deleteMany({qID:ID})
+        res.json({status:'OK'});
+    }catch(err){
+        res.json({status:'Failed',reason:err});
+    }
+}
+
+const addAnswer = async (req, res, next) => {
+    Answer.create(req.params).then(function(answer) {
+        res.send(answer);
+    }).catch(next);
+      };
+
+
+  
+
 module.exports={
     post_questionnaire,
-    get_healthcheck
+    resetall,
+    get_healthcheck,
+    addAnswer,
+    resetq
+
+
 }
