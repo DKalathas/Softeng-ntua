@@ -1,6 +1,7 @@
 const Questionnaire = require("../models/questionnaire");
 const Answer = require("../models/answers")
 const mongoose = require('mongoose');
+const Answers = require("../models/answers");
 require('dotenv').config();
 
 
@@ -94,6 +95,98 @@ const get_options = (req,res) => {
     }
 };
 
+const get_session_answers = (req,res) => {
+    const query = req.params;
+    que1=query['questionnaireID']
+    que2=query['session']
+    //console.log(que1)
+    //console.log(que2)
+    try{
+        Answers.aggregate([
+            {
+              '$match': {
+                '$and': [
+                  {
+                    'questionnaireID': que1, 
+                    'session': que2
+                  }
+                ]
+              }
+            }, {
+              '$group': {
+                '_id': {
+                  'questionnaireID': '$questionnaireID', 
+                  'session': '$session'
+                }, 
+                'answers': {
+                  '$push': {
+                    'questionID': '$questionID', 
+                    'ans': '$optionID'
+                  }
+                }
+              }
+            }, {
+              '$project': {
+                '_id': 0, 
+                'questionnaireID': '$_id.questionnaireID', 
+                'session': '$_id.session', 
+                'qID': '$questionID', 
+                'answers': '$answers'
+              }
+            }
+          ]).then(function(ans){
+            res.send(ans)
+        })}catch(err){
+        res.json({status:'Failed',reason:err});
+    }
+};
+
+
+const get_question_answers = (req,res) => {
+    const query = req.params;
+    que1=query['questionnaireID']
+    que2=query['questionID']
+    console.log(que1)
+    console.log(que2)
+    try{
+        Answers.aggregate([
+            {
+              '$match': {
+                '$and': [
+                  {
+                    'questionID': que2, 
+                    'questionnaireID': que1
+                  }
+                ]
+              }
+            }, {
+              '$group': {
+                '_id': {
+                  'questionnaireID': '$questionnaireID', 
+                  'questionID': '$questionID'
+                }, 
+                'answers': {
+                  '$push': {
+                    'session': '$session', 
+                    'ans': '$optionID'
+                  }
+                }
+              }
+            }, {
+              '$project': {
+                '_id': 0, 
+                'questionnaireID': '$_id.questionnaireID', 
+                'questionID': '$_id.questionID', 
+                'answers': '$answers'
+              }
+            }
+          ]).then(function(ans){
+            res.send(ans)
+        })}catch(err){
+        res.json({status:'Failed',reason:err});
+    }
+}
+
 module.exports={
     post_questionnaire,
     resetall,
@@ -101,5 +194,7 @@ module.exports={
     addAnswer,
     resetq,
     get_questionnaire,
-    get_options
+    get_options,
+    get_session_answers,
+    get_question_answers
 }
