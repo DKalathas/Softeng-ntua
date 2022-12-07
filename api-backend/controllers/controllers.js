@@ -146,8 +146,8 @@ const get_question_answers = (req,res) => {
     const query = req.params;
     que1=query['questionnaireID']
     que2=query['questionID']
-    console.log(que1)
-    console.log(que2)
+    //console.log(que1)
+    //console.log(que2)
     try{
         Answers.aggregate([
             {
