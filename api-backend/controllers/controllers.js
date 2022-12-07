@@ -62,7 +62,31 @@ const get_options = (req,res) => {
     const que1 = query['questionnaireID']
     const que2 = query['questionID']
     try{
-        Questionnaire.find({questionnaireID:que1},{questions:{$elemMatch:{qID:que2}}},{questionnaireID:1,questions:{qID:1,qtext:1,required:1,type:1,options:1},_id:0}).then(function(ans){
+        Questionnaire.aggregate([
+            {
+              '$unwind': {
+                'path': '$questions'
+              }
+            }, {
+              '$match': {
+                '$and': [
+                  {
+                    'questionnaireID': que1, 
+                    'questions.qID': que2
+                  }
+                ]
+              }
+            }, {
+              '$project': {
+                'questionnaireID': 1, 
+                'qID': '$questions.qID', 
+                'qtext': '$questions.qtext', 
+                'required': '$questions.required', 
+                'type': '$questions.type', 
+                'options': '$questions.options'
+              }
+            }
+          ]).then(function(ans){
             res.send(ans)
         })
     }catch(err){
