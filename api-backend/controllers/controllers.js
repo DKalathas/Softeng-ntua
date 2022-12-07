@@ -26,6 +26,16 @@ const resetall = async (req,res)=>{
     }
 };
 
+const addAnswer = async (req, res, next) => {
+    try{
+        Answer.create(req.params).then(function(answer) {
+        res.send(answer);
+    })
+    }catch(err){
+        res.json({status:'Failed',reason:err});
+    };
+};
+
 const resetq = async (req,res)=>{
     const ID = req.params; 
     try{
@@ -36,21 +46,60 @@ const resetq = async (req,res)=>{
     }
 }
 
-const addAnswer = async (req, res, next) => {
-    Answer.create(req.params).then(function(answer) {
-        res.send(answer);
-    }).catch(next);
-      };
-
-
+const get_questionnaire = (req,res) => {
+    const ID = req.params;
+    try{
+        Questionnaire.find({questionnaireID:ID['questionnaireID']},{_id:0,questionnaireID:1,questionnaireTitle:1,keywords:1,"questions.qID":1,"questions.qtext":1,"questions.required":1,"questions.type":1}).then(function(ans){
+            res.send(ans)
+        })
+    }catch(err){
+        res.json({status:'Failed',reason:err});
+    }
+};
   
+const get_options = (req,res) => {
+    const query = req.params;
+    const que1 = query['questionnaireID']
+    const que2 = query['questionID']
+    try{
+        Questionnaire.aggregate([
+            {
+              '$unwind': {
+                'path': '$questions'
+              }
+            }, {
+              '$match': {
+                '$and': [
+                  {
+                    'questionnaireID': que1, 
+                    'questions.qID': que2
+                  }
+                ]
+              }
+            }, {
+              '$project': {
+                'questionnaireID': 1, 
+                'qID': '$questions.qID', 
+                'qtext': '$questions.qtext', 
+                'required': '$questions.required', 
+                'type': '$questions.type', 
+                'options': '$questions.options'
+              }
+            }
+          ]).then(function(ans){
+            res.send(ans)
+        })
+    }catch(err){
+        res.json({status:'Failed',reason:err});
+    }
+};
 
 module.exports={
     post_questionnaire,
     resetall,
     get_healthcheck,
     addAnswer,
-    resetq
-
-
+    resetq,
+    get_questionnaire,
+    get_options
 }
