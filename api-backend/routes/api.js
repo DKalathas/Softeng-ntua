@@ -24,6 +24,8 @@ router.get('/questionnaire/:questionnaireID',controllers.get_questionnaire);
 router.post('/doanswer/:questionnaireID/:questionID/:session/:optionID',controllers.addAnswer);
 //get question of a questionnaire based on IDs
 router.get('/question/:questionnaireID/:questionID',controllers.get_options);
-
-
+//get answer on questionnaire id and on session
+router.get('/getsessionanswers/:questionnaireID/:session',controllers.get_session_answers);
+//get question on questionnaire ID and on question ID
+router.get('/getquestionanswers/:questionnaireID/:questionID',controllers.get_question_answers);
 module.exports = router;
