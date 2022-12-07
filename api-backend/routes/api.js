@@ -19,7 +19,11 @@ router.post("/admin/resetq/:questionnaireID",controllers.resetq);
 
 //------------------------------------------------Functional-------------------------------------------
 //get questionnaire based on qID
+router.get('/questionnaire/:questionnaireID',controllers.get_questionnaire);
 //post answer
 router.post('/doanswer/:questionnaireID/:questionID/:session/:optionID',controllers.addAnswer);
+//get question of a questionnaire based on IDs
+router.get('/question/:questionnaireID/:questionID',controllers.get_options);
+
 
 module.exports = router;
