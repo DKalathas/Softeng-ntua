@@ -49,7 +49,7 @@ const resetq = async (req,res)=>{
 const get_questionnaire = (req,res) => {
     const ID = req.params;
     try{
-        Questionnaire.find({questionnaireID:ID['questionnaireID']},{questionnaireID:1,questionnaireTitle:1,keywords:1,questions:{qID:1,qtext:1,required:1,type:1},_id:0}).then(function(ans){
+        Questionnaire.find({questionnaireID:ID['questionnaireID']},{_id:0,questionnaireID:1,questionnaireTitle:1,keywords:1,"questions.qID":1,"questions.qtext":1,"questions.required":1,"questions.type":1}).then(function(ans){
             res.send(ans)
         })
     }catch(err){
@@ -78,5 +78,4 @@ module.exports={
     resetq,
     get_questionnaire,
     get_options
-
 }
