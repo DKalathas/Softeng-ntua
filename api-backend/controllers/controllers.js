@@ -26,6 +26,16 @@ const resetall = async (req,res)=>{
     }
 };
 
+const addAnswer = async (req, res, next) => {
+    try{
+        Answer.create(req.params).then(function(answer) {
+        res.send(answer);
+    })
+    }catch(err){
+        res.json({status:'Failed',reason:err});
+    };
+};
+
 const resetq = async (req,res)=>{
     const ID = req.params; 
     try{
@@ -36,21 +46,37 @@ const resetq = async (req,res)=>{
     }
 }
 
-const addAnswer = async (req, res, next) => {
-    Answer.create(req.params).then(function(answer) {
-        res.send(answer);
-    }).catch(next);
-      };
-
-
+const get_questionnaire = (req,res) => {
+    const ID = req.params;
+    try{
+        Questionnaire.find({questionnaireID:ID['questionnaireID']},{questionnaireID:1,questionnaireTitle:1,keywords:1,questions:{qID:1,qtext:1,required:1,type:1},_id:0}).then(function(ans){
+            res.send(ans)
+        })
+    }catch(err){
+        res.json({status:'Failed',reason:err});
+    }
+};
   
+const get_options = (req,res) => {
+    const query = req.params;
+    const que1 = query['questionnaireID']
+    const que2 = query['questionID']
+    try{
+        Questionnaire.find({questionnaireID:que1},{questions:{$elemMatch:{qID:que2}}},{questionnaireID:1,questions:{qID:1,qtext:1,required:1,type:1,options:1},_id:0}).then(function(ans){
+            res.send(ans)
+        })
+    }catch(err){
+        res.json({status:'Failed',reason:err});
+    }
+};
 
 module.exports={
     post_questionnaire,
     resetall,
     get_healthcheck,
     addAnswer,
-    resetq
-
+    resetq,
+    get_questionnaire,
+    get_options
 
 }
