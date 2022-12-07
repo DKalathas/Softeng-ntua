@@ -4,8 +4,8 @@
   width: 100%;
   padding:0px;
   margin-bottom: 0;
-  font-family: 'Pacifico';
-  background: linear-gradient(90deg, #14342B 50%, #B2AF06 50%);
+  font-family: sans-serif;
+  background: linear-gradient(90deg, #14342B 50%, #ffffff 50%);
   min-height: 100vh;
 }
 
@@ -20,13 +20,14 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   margin-top: 20%;
+  font-size: xxx-large;
 }
 
 .buttons{
   margin-top: 20%;
   height:100%;
-  color:#B2AF06;
-  font-family: 'Pacifico';
+  color:#ffffff;
+  font-family: sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
 }
@@ -35,7 +36,7 @@
   margin-left: 10%;
   margin-right: 10%;
   margin-top: 10%;
-  background-color: #B2AF06;
+  background-color: #ffffff;
   color: #14342B;
   border-radius: 10px;
 }
