@@ -201,6 +201,25 @@ def getquestionanswers(questionnaire_id,question_id,format):
         click.echo(res.content)
     return True
 
+#---extra---#
+
+@click.command()
+@click.option('--format', help = 'Choose format (json or csv)', required = 'True', metavar = '[csv/json]')
+def getallquestionanswers(format):
+    
+    
+    url='http://localhost:4000/intelliq_api/admin/getallquestionanswers/'
+    url=url+'?format='+str(format)
+
+    res = requests.get(url)
+    click.echo(res.status_code)
+    if (format != "csv" and format !='json'):
+        click.echo(res.content)
+    if(format == 'json' and res.status_code == 200):
+        click.echo(json.dumps(res.json()))
+    elif(format == 'csv' and res.status_code == 200):
+        click.echo(res.content)
+    return True
 
 
 
@@ -214,6 +233,7 @@ cli.add_command(question)
 cli.add_command(doanswer)
 cli.add_command(getsessionanswers)
 cli.add_command(getquestionanswers)
+cli.add_command(getallquestionanswers)
 
 
 if __name__ == "__main__":
