@@ -142,6 +142,7 @@ const addAnswer = async (req, res, next) => {
 };
 
 const resetq = async (req, res) => {
+
   const ID = req.params;
   const format = req.query.format;
   if (req.params.questionnaireID === ":questionnaireID") {
@@ -189,6 +190,7 @@ const get_questionnaire = (req, res) => {
   }
   try {
     Questionnaire.find({ questionnaireID: ID['questionnaireID'] }, { _id: 0, questionnaireID: 1, questionnaireTitle: 1, keywords: 1, "questions.qID": 1, "questions.qtext": 1, "questions.required": 1, "questions.type": 1 }).then(function (ans) {
+
       if (ans.length == 0) {
         res.status(402).send({ "status": "No data" });
         return;
