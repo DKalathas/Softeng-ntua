@@ -13,7 +13,7 @@ const QuestionnaireDetails = () => {
             {error && <div>{error}</div>}
             {questionnaire && questionnaire.map(questionnaire => (
                 <div key={questionnaire.questionnaireID}>
-                    <button onClick={() => navigate(-1)}>Back</button>
+                    <button onClick={() => navigate('/admin')}>Back</button>
                     <h2 >ID of Questionnaire: {questionnaire.questionnaireID}</h2>
                     <p>Title of Questionnaire: {questionnaire.questionnaireTitle}</p>
                     {questionnaire.questions && questionnaire.questions.map(questions => (
@@ -30,7 +30,7 @@ const QuestionnaireDetails = () => {
                             ))}
                         </div>
                     ))}
-                    <button onClick={() => navigate(-1)}>Back</button>
+                    <button onClick={() => navigate('/admin')}>Back</button>
                 </div>
             ))}
         </div>

@@ -29,7 +29,12 @@ const Admin = () => {
                         <p class="card-text">This button lets you review all questionnaires.</p>
                         <button class="btn btn2 heartbeat" onClick={() => navigate("/all")}>View All Questionnaires</button>
                     </div>
+                    <div class="card-body crd1 text-center">
+                        <p class="card-text">This button lets you review all Answers from a Questionaire.</p>
+                        <button class="btn btn2 heartbeat" onClick={() => navigate("/allanswers")}>View All Answers</button>
+                    </div>
                 </div>
+
             </div>
         </div>
     )
