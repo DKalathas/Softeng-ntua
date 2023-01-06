@@ -522,6 +522,48 @@ const get_all_question = (req, res) => {
 };
 
 
+const get_all_answers = (req, res) => {
+  const ID = req.params;
+  const format = req.query.format;
+  if (req.params.questionnaireID === ":questionnaireID") {
+    res.status(400).send({ "status": "missing or invalid parameters" });
+    return;
+  }
+  if (format !== 'json' && format !== 'csv' && format !== undefined) {
+    res.status(400).send({ "status": "missing or invalid parameters" });
+    return;
+  }
+  try {
+    Answer.find({ questionnaireID: ID['questionnaireID'] }).then(function (ans) {
+
+      if (ans.length == 0) {
+        res.status(402).send({ "status": "No data" });
+        return;
+      }
+      const format = req.query.format;
+      if (format === undefined || format === 'json') {
+        res.send(ans);
+        return;
+      } else if (format === 'csv') {
+        csv = parse(ans);
+        res.send(csv);
+        return;
+      }
+    })
+  } catch (err) {
+    const format = req.query.format;
+    if (format === undefined || format === 'json') {
+      res.status(500).send({ status: 'Failed', reason: err });
+      return;
+    } else if (format === 'csv') {
+      csv = parse({ status: 'Failed', reason: err });
+      res.status(500).send(csv);
+      return;
+    }
+  }
+};
+
+
 module.exports = {
   post_questionnaire,
   resetall,
@@ -533,5 +575,6 @@ module.exports = {
   get_session_answers,
   get_question_answers,
   get_all_questionnaire,
-  get_all_question
+  get_all_question,
+  get_all_answers
 }
