@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Admin from "./components/Admin";
 import All from './components/ALL';
-import QuestionAll from "./components/QuestionsAll";
+import QuestionnaireDetails from "./components/QuestionnaireDetails";
 
 function App() {
 
@@ -14,7 +14,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/admin" element={<Admin />} />
           <Route path='/all' element={<All />} />
-          <Route path="/questionnaire/:id" element={<QuestionAll />} />
+          <Route path="/questionnaire/:id" element={<QuestionnaireDetails />} />
         </Routes>
       </BrowserRouter>
     </>

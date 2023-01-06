@@ -18,7 +18,7 @@
   }
   .questionnaire-preview h2 {
     font-size: 20px;
-    color: #051501;
+    color: #edf2ec;
     margin-bottom: 8px;
   }
   .questionnaire-preview a{
@@ -35,7 +35,7 @@
     margin-bottom: 10px;
   }
   .questionnaire-details div {
-    margin: 20px 0;
+    margin: 20px ;
     color: #033104;
   }
   .questionnaire-details button {
@@ -45,4 +45,10 @@
     padding: 8px;
     border-radius: 8px;
     cursor: pointer;
+  }
+  .box {
+    width: 300px;
+    border: 15px solid green;
+    padding: 50px;
+    margin: 20px;
   }

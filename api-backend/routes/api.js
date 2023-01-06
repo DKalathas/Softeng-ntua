@@ -29,8 +29,9 @@ router.get('/getsessionanswers/:questionnaireID/:session', controllers.get_sessi
 //get question on questionnaire ID and on question ID
 router.get('/getquestionanswers/:questionnaireID/:questionID', controllers.get_question_answers);
 
-//--------one extra-------//
+//-------- extra-------//
 
 router.get('/admin/getallquestionanswers', controllers.get_all_questionnaire);
+router.get('/allquestionnaire/:questionnaireID', controllers.get_all_question);
 
 module.exports = router;
