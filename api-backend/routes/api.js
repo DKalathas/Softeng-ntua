@@ -33,5 +33,6 @@ router.get('/getquestionanswers/:questionnaireID/:questionID', controllers.get_q
 
 router.get('/admin/getallquestionanswers', controllers.get_all_questionnaire);
 router.get('/allquestionnaire/:questionnaireID', controllers.get_all_question);
+router.get('/allanswers/:questionnaireID', controllers.get_all_answers);
 
 module.exports = router;

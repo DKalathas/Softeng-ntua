@@ -4,6 +4,9 @@ import Home from "./components/Home";
 import Admin from "./components/Admin";
 import All from './components/ALL';
 import QuestionnaireDetails from "./components/QuestionnaireDetails";
+import AllAnswers from "./components/AllAnswers";
+import AnswerDetails from "./components/AnswerDetails";
+import QuestionDetails from "./components/QuestionDetails";
 
 function App() {
 
@@ -15,6 +18,9 @@ function App() {
           <Route path="/admin" element={<Admin />} />
           <Route path='/all' element={<All />} />
           <Route path="/questionnaire/:id" element={<QuestionnaireDetails />} />
+          <Route path="/allanswers" element={<AllAnswers />} />
+          <Route path="/answer/:id" element={<AnswerDetails />} />
+          <Route path="/answer/:id/:qid" element={<QuestionDetails />} />
         </Routes>
       </BrowserRouter>
     </>
