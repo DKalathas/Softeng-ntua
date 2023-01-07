@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import useFetch from "./useFetch";
+import Carousel from 'react-bootstrap/Carousel';
 
 const QuestionnaireDetails = () => {
 
@@ -14,9 +15,11 @@ const QuestionnaireDetails = () => {
             {questionnaire && questionnaire.map(questionnaire => (
                 <div key={questionnaire.questionnaireID}>
                     <button onClick={() => navigate('/admin')}>Back</button>
-                    <h2 >ID of Questionnaire: {questionnaire.questionnaireID}</h2>
-                    <p>Title of Questionnaire: {questionnaire.questionnaireTitle}</p>
+                    <h2 >Questionnaire ID: {questionnaire.questionnaireID}</h2>
+                    <p>Title: {questionnaire.questionnaireTitle}</p>
+                    <Carousel>
                     {questionnaire.questions && questionnaire.questions.map(questions => (
+                        <Carousel.Item>
                         <div className="questionnaire-preview" key={questions.qID}>
                             <p >ID of Question: {questions.qID}</p>
                             <p>Question: {questions.qtext}</p>
@@ -24,13 +27,15 @@ const QuestionnaireDetails = () => {
                                 <div className='box' key={option.optID}>
                                     <p>ID of Option: {option.optID}</p>
                                     <p>Option: {option.opttxt}</p>
-                                    <p>Next Qyestion: {option.nextqID}</p>
+                                    <p>Next Question: {option.nextqID}</p>
 
                                 </div>
                             ))}
                         </div>
+                        </Carousel.Item>
                     ))}
                     <button onClick={() => navigate('/admin')}>Back</button>
+                    </Carousel>
                 </div>
             ))}
         </div>

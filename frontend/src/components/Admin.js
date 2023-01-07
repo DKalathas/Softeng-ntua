@@ -9,7 +9,7 @@ const Admin = () => {
         <div className='Admin'>
             <div className='row heading'>
                 <h1 className='text-center col'>Administrative Actions</h1>
-                <button className='col text-center home' onClick={() => navigate("/")}>Go Back Home</button>
+                <button className='col text-center home' onClick={() => navigate("/")}>Go Back</button>
             </div>
             <div className='row'>
                 <div className='col col1'>
