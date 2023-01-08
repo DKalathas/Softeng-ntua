@@ -10,7 +10,7 @@ const QuestionnaireDetails = () => {
 
     return (
         <div className="questionnaire-details" >
-            {isPending && <div>Loading...</div>}
+            {isPending && <div className="text-center">Loading...</div>}
             {error && <div>{error}</div>}
             {questionnaire && questionnaire.map(questionnaire => (
                 <div key={questionnaire.questionnaireID}>
