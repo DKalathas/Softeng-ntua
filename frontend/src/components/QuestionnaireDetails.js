@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import useFetch from "./useFetch";
-import Carousel from 'react-bootstrap/Carousel';
+import "./Details.css"
 
 const QuestionnaireDetails = () => {
 
@@ -14,28 +14,34 @@ const QuestionnaireDetails = () => {
             {error && <div>{error}</div>}
             {questionnaire && questionnaire.map(questionnaire => (
                 <div key={questionnaire.questionnaireID}>
-                    <button onClick={() => navigate('/admin')}>Back</button>
-                    <h2 >Questionnaire ID: {questionnaire.questionnaireID}</h2>
-                    <p>Title: {questionnaire.questionnaireTitle}</p>
-                    <Carousel>
+                    <div className="qlist row header">
+                        <div className="col">
+                            <h2>Questionnaire ID: {questionnaire.questionnaireID}</h2>
+                            <p>Title: {questionnaire.questionnaireTitle}</p>
+                        </div>
+                        <div className="col"></div>
+                        <div className="col"></div>
+                        <div className="col">
+                            <button onClick={() => navigate('/All')}>Back</button>
+                        </div>
+                    </div>
                     {questionnaire.questions && questionnaire.questions.map(questions => (
-                        <Carousel.Item>
-                        <div className="questionnaire-preview" key={questions.qID}>
-                            <p >ID of Question: {questions.qID}</p>
-                            <p>Question: {questions.qtext}</p>
+                        <div className="questionnaire-preview1 text-center" key={questions.qID}>
+                            <p><b>ID of Question: {questions.qID}</b></p>
+                            <p><b>Question: {questions.qtext}</b></p>
+                            <p className="car3">Possible Answers</p>
                             {questions.options && questions.options.map(option => (
-                                <div className='box' key={option.optID}>
+                                <div className='box1 text-center' key={option.optID}>
                                     <p>ID of Option: {option.optID}</p>
                                     <p>Option: {option.opttxt}</p>
                                     <p>Next Question: {option.nextqID}</p>
-
                                 </div>
                             ))}
                         </div>
-                        </Carousel.Item>
                     ))}
-                    <button onClick={() => navigate('/admin')}>Back</button>
-                    </Carousel>
+                    <div className="text-center">
+                    <button onClick={() => navigate('/All')}>Back</button>
+                    </div>
                 </div>
             ))}
         </div>
