@@ -13,9 +13,7 @@
     background-color:#3a3d3a;
 }
     
-  .questionnaire-preview:hover {
-    box-shadow: 1px 3px 5px rgba(222, 227, 222, 0.1);
-  }
+
   .questionnaire-preview h2 {
     font-size: 20px;
     color: #edf2ec;
@@ -26,7 +24,7 @@
   }
   .questionnaire-preview p{
     text-decoration: none;
-    color: #257412;
+    color: #14342B;
   }
 
   .questionnaire-details h2 {
@@ -36,7 +34,7 @@
   }
   .questionnaire-details div {
     margin: 20px ;
-    color: #033104;
+    color: #14342B;
   }
   .questionnaire-details button {
     background: #011801;
@@ -48,7 +46,7 @@
   }
   .box {
     width: 300px;
-    border: 15px solid green;
+    border: 15px solid #14342B;
     padding: 50px;
     margin: 20px;
   }

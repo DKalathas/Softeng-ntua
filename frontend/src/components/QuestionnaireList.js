@@ -5,7 +5,7 @@ import Carousel from 'react-bootstrap/Carousel';
 const QuestionnaireList = ({ questionnaire }) => {
     return (
         <div className="questionnaire-list">
-            <Carousel>
+            <Carousel className="car" interval={null}>
             {questionnaire.map(questionnaire => (
                 <Carousel.Item>
                 <div className="questionnaire-preview" key={questionnaire.questionnaireID} >
