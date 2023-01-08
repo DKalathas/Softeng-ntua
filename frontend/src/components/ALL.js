@@ -19,7 +19,7 @@ const All = () => {
             </div>
             <div className='questionnaires'>
                 {error && <div>{error}</div>}
-                {isPending && <div>Loading...</div>}
+                {isPending && <div className='text-center'>Loading...</div>}
                 {questionnaire && <QuestionnaireList questionnaire={questionnaire} />}
             </div>
         </div>

@@ -9,7 +9,7 @@ const QuestionDetails = () => {
 
     return (
         <div className="questionnaire-details" >
-            {isPending && <div>Loading...</div>}
+            {isPending && <div className="text-center">Loading...</div>}
             {error && <div>{error}</div>}
             <h2>Question Details</h2>
             {que && que.map(que => (

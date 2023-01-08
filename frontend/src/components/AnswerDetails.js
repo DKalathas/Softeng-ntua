@@ -12,7 +12,7 @@ const AnswerDetails = () => {
 
     return (
         <div className="questionnaire-details" >
-            {isPending && <div>Loading...</div>}
+            {isPending && <div className="text-center">Loading...</div>}
             {error && <div>{error}</div>}
             <h2>Answers from {id}</h2>
             <button onClick={() => navigate('/admin')}>Back</button>
