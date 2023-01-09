@@ -7,6 +7,8 @@ import QuestionnaireDetails from "./components/QuestionnaireDetails";
 import AllAnswers from "./components/AllAnswers";
 import AnswerDetails from "./components/AnswerDetails";
 import QuestionDetails from "./components/QuestionDetails";
+import Healthcheck from "./components/Healthcheck";
+
 
 function App() {
 
@@ -19,6 +21,7 @@ function App() {
           <Route path='/all' element={<All />} />
           <Route path="/questionnaire/:id" element={<QuestionnaireDetails />} />
           <Route path="/allanswers" element={<AllAnswers />} />
+          <Route path="/healthcheck" element={<Healthcheck />} />
           <Route path="/answer/:id" element={<AnswerDetails />} />
           <Route path="/answer/:id/:qid/:opt" element={<QuestionDetails />} />
         </Routes>
