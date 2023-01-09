@@ -21,10 +21,10 @@ const QuestionDetails = () => {
             {isPending  && <div className="text-center">Loading...</div>}
             {error && <div>{error}</div>}
             {que && que.map(que => (
-                <div className="questionnaire-preview car5 text-center" key={que.questionnaireID}>
+                <div className="car5 text-center" key={que.questionnaireID}>
                     <p><b>Question: {que.qtext}</b></p>
                     {que.options && que.options.filter(option => option.optID===ops[0]).map(option => (
-                        <div className='box text-center car6' key={option.optID}>
+                        <div className='box1 text-center car6' key={option.optID}>
                             <p>ID of Option: {option.optID}</p>
                             <p>Option: {option.opttxt}</p>
                         </div>
@@ -32,6 +32,9 @@ const QuestionDetails = () => {
                 </div>
 
             ))}
+            <div className="text-center car6">
+                <button onClick={() => navigate(-1)}>Back</button>
+            </div>
         </div>
         </div>
     );
