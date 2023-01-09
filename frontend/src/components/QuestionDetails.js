@@ -9,7 +9,7 @@ const QuestionDetails = () => {
     const navigate = useNavigate();
     const ids = useState(id)
     const ops = useState(opt)
-    console.log(typeof ops[0])
+    console.log(ops)
 
     return (
         <div>
