@@ -27,9 +27,9 @@ def healthcheck(format):
     click.echo(res.status_code)
     if (format != "csv" and format !='json'):
         click.echo(res.content)
-    if(format == 'json' and res.status_code == 200):
+    if(format == 'json' ):
         click.echo(json.dumps(res.json()))
-    elif(format == 'csv' and res.status_code == 200):
+    elif(format == 'csv' ):
         click.echo(res.content)
     return True
     
@@ -45,9 +45,9 @@ def resetall(format):
     click.echo(res.status_code)
     if (format != "csv" and format !='json'):
         click.echo(res.content)
-    if(format == 'json' and res.status_code == 200):
+    if(format == 'json' ):
         click.echo(json.dumps(res.json()))
-    elif(format == 'csv' and res.status_code == 200):
+    elif(format == 'csv' ):
         click.echo(res.content)
     return True
    
@@ -68,9 +68,9 @@ def questionnaire_upd(source,format):
     click.echo(res.status_code)
     if (format != "csv" and format !='json'):
         click.echo(res.content)
-    if(format == 'json' and res.status_code == 200):
+    if(format == 'json' ):
         click.echo(json.dumps(res.json()))
-    elif(format == 'csv' and res.status_code == 200):
+    elif(format == 'csv' ):
         click.echo(res.content)
     
     f.close()
@@ -89,9 +89,9 @@ def resetq(questionnaire_id,format):
     click.echo(res.status_code)
     if (format != "csv" and format !='json'):
         click.echo(res.content)
-    if(format == 'json' and res.status_code == 200):
+    if(format == 'json' ):
         click.echo(json.dumps(res.json()))
-    elif(format == 'csv' and res.status_code == 200):
+    elif(format == 'csv' ):
         click.echo(res.content)
     return True
 
@@ -109,9 +109,9 @@ def questionnaire(questionnaire_id,format):
     click.echo(res.status_code)
     if (format != "csv" and format !='json'):
         click.echo(res.content)
-    if(format == 'json' and res.status_code == 200):
+    if(format == 'json' ):
         click.echo(json.dumps(res.json()))
-    elif(format == 'csv' and res.status_code == 200):
+    elif(format == 'csv' ):
         click.echo(res.content)
     return True
     
@@ -130,9 +130,9 @@ def question(questionnaire_id,question_id,format):
     click.echo(res.status_code)
     if (format != "csv" and format !='json'):
         click.echo(res.content)
-    if(format == 'json' and res.status_code == 200):
+    if(format == 'json' ):
         click.echo(json.dumps(res.json()))
-    elif(format == 'csv' and res.status_code == 200):
+    elif(format == 'csv'):
         click.echo(res.content)
     return True
 
@@ -153,9 +153,9 @@ def doanswer(questionnaire_id,question_id,session_id,option_id,format):
     click.echo(res.status_code)
     if (format != "csv" and format !='json'):
         click.echo(res.content)
-    if(format == 'json' and res.status_code == 200):
+    if(format == 'json' ):
         click.echo(json.dumps(res.json()))
-    elif(format == 'csv' and res.status_code == 200):
+    elif(format == 'csv' ):
         click.echo(res.content)
     return True
 
@@ -175,9 +175,9 @@ def getsessionanswers(questionnaire_id,session_id,format):
     click.echo(res.status_code)
     if (format != "csv" and format !='json'):
         click.echo(res.content)
-    if(format == 'json' and res.status_code == 200):
+    if(format == 'json' ):
         click.echo(json.dumps(res.json()))
-    elif(format == 'csv' and res.status_code == 200):
+    elif(format == 'csv' ):
         click.echo(res.content)
     return True
     
@@ -195,13 +195,70 @@ def getquestionanswers(questionnaire_id,question_id,format):
     click.echo(res.status_code)
     if (format != "csv" and format !='json'):
         click.echo(res.content)
-    if(format == 'json' and res.status_code == 200):
+    if(format == 'json' ):
         click.echo(json.dumps(res.json()))
-    elif(format == 'csv' and res.status_code == 200):
+    elif(format == 'csv' ):
+        click.echo(res.content)
+    return True
+
+#---extra---#
+
+@click.command()
+@click.option('--format', help = 'Choose format (json or csv)', required = 'True', metavar = '[csv/json]')
+def getallquestionanswers(format):
+    
+    
+    url='http://localhost:4000/intelliq_api/admin/getallquestionanswers/'
+    url=url+'?format='+str(format)
+
+    res = requests.get(url)
+    click.echo(res.status_code)
+    if (format != "csv" and format !='json'):
+        click.echo(res.content)
+    if(format == 'json'):
+        click.echo(json.dumps(res.json()))
+    elif(format == 'csv' ):
+        click.echo(res.content)
+    return True
+
+@click.command()
+@click.option('--questionnaire_id', help = 'Find a questionnaire', required = 'True', metavar = '<questionnaire_id>')
+@click.option('--format', help = 'Choose format (json or csv)', required = 'True', metavar = '[csv/json]')
+def getallquestions(questionnaire_id,format):
+    
+    
+    url='http://localhost:4000/intelliq_api/allquestionnaire/'+questionnaire_id
+    url=url+'?format='+str(format)
+
+    res = requests.get(url)
+    click.echo(res.status_code)
+    if (format != "csv" and format !='json'):
+        click.echo(res.content)
+    if(format == 'json' ):
+        click.echo(json.dumps(res.json()))
+    elif(format == 'csv' ):
         click.echo(res.content)
     return True
 
 
+@click.command()
+@click.option('--questionnaire_id', help = 'Find a questionnaire', required = 'True', metavar = '<questionnaire_id>')
+@click.option('--format', help = 'Choose format (json or csv)', required = 'True', metavar = '[csv/json]')
+def getallanswers(questionnaire_id,format):
+    
+    
+    url='http://localhost:4000/intelliq_api/allanswers/'+questionnaire_id
+    url=url+'?format='+str(format)
+
+    res = requests.get(url)
+    click.echo(res.status_code)
+    if (format != "csv" and format !='json'):
+        click.echo(res.content)
+    if(format == 'json' ):
+        click.echo(json.dumps(res.json()))
+    elif(format == 'csv' ):
+        click.echo(res.content)
+    return True
 
 
 
@@ -214,6 +271,9 @@ cli.add_command(question)
 cli.add_command(doanswer)
 cli.add_command(getsessionanswers)
 cli.add_command(getquestionanswers)
+cli.add_command(getallquestionanswers)
+cli.add_command(getallquestions)
+cli.add_command(getallanswers)
 
 
 if __name__ == "__main__":
