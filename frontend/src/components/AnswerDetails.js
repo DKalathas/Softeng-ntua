@@ -26,8 +26,8 @@ const AnswerDetails = () => {
             {answers && answers.map(answers => (
                 <div className="questionnaire-preview1 text-center" key={answers.questionnaireID} style={{padding:0}}>
                     <Link to={`/answer/${answers.questionnaireID}/${answers.questionID}/${String(answers.optionID)}`}>
-                        <div className="answ">
-                        <p><b>Session:</b> {answers.session}</p>
+                        <div className="car7">
+                        <p className="car7"><b>Session:</b> {answers.session}</p>
                         <p><b>Question ID:</b> {answers.questionID}</p>
                         <p><b>Option ID:</b> {answers.optionID}</p>
                         <p><b>Click here for more</b></p>
