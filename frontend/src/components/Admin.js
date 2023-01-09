@@ -14,13 +14,7 @@ const Admin = () => {
             <div className='row'>
                 <div className='col col1'>
                     <div class="card-body crd1 text-center">
-                        <button class="btn btn2 heartbeat">Reset All</button>
-                    </div>
-                    <div class="card-body crd1 text-center">
-                        <button class="btn btn2 heartbeat">Healtcheck</button>
-                    </div>
-                    <div class="card-body crd1 text-center">
-                        <button class="btn btn2 heartbeat">Reset questionnaire</button>
+                        <button class="btn btn2 heartbeat" onClick={() => navigate("/healthcheck")}>Healtcheck</button>
                     </div>
                     <div class="card-body crd1 text-center">
                         <button class="btn btn2 heartbeat" onClick={() => navigate("/all")}>View All Questionnaires</button>
