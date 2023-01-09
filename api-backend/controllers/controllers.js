@@ -3,6 +3,7 @@ const Answer = require("../models/answers")
 const mongoose = require('mongoose');
 const Answers = require("../models/answers");
 const { parse } = require('json2csv');
+const converter = require('json-2-csv')
 require('dotenv').config();
 
 
@@ -142,6 +143,7 @@ const addAnswer = async (req, res, next) => {
 };
 
 const resetq = async (req, res) => {
+
   const ID = req.params;
   const format = req.query.format;
   if (req.params.questionnaireID === ":questionnaireID") {
@@ -189,6 +191,7 @@ const get_questionnaire = (req, res) => {
   }
   try {
     Questionnaire.find({ questionnaireID: ID['questionnaireID'] }, { _id: 0, questionnaireID: 1, questionnaireTitle: 1, keywords: 1, "questions.qID": 1, "questions.qtext": 1, "questions.required": 1, "questions.type": 1 }).then(function (ans) {
+
       if (ans.length == 0) {
         res.status(402).send({ "status": "No data" });
         return;
@@ -434,6 +437,133 @@ const get_question_answers = (req, res) => {
   }
 }
 
+
+//----------  extra endpoints------//
+
+const get_all_questionnaire = (req, res) => {
+  const format = req.query.format;
+  if (req.params.length != undefined) {
+    res.status(400).send({ "status": "missing or invalid parameters" });
+    return;
+  }
+  if (format !== 'json' && format !== 'csv' && format !== undefined) {
+    res.status(400).send({ "status": "missing or invalid parameters" });
+    return;
+  }
+  try {
+    Questionnaire.find().then(function (ans) {
+      if (ans.length == 0) {
+        res.status(402).send({ "status": "No data" });
+        return;
+      }
+      const format = req.query.format;
+      if (format === undefined || format === 'json') {
+        res.send(ans);
+        return;
+      } else if (format === 'csv') {
+        csv = parse(ans);
+        res.send(csv);
+        return;
+      }
+    })
+  } catch (err) {
+    const format = req.query.format;
+    if (format === undefined || format === 'json') {
+      res.status(500).send({ status: 'Failed', reason: err });
+      return;
+    } else if (format === 'csv') {
+      csv = parse({ status: 'Failed', reason: err });
+      res.status(500).send(csv);
+      return;
+    }
+  }
+};
+
+
+const get_all_question = (req, res) => {
+  const ID = req.params;
+  const format = req.query.format;
+  if (req.params.questionnaireID === ":questionnaireID") {
+    res.status(400).send({ "status": "missing or invalid parameters" });
+    return;
+  }
+  if (format !== 'json' && format !== 'csv' && format !== undefined) {
+    res.status(400).send({ "status": "missing or invalid parameters" });
+    return;
+  }
+  try {
+    Questionnaire.find({ questionnaireID: ID['questionnaireID'] }).then(function (ans) {
+
+      if (ans.length == 0) {
+        res.status(402).send({ "status": "No data" });
+        return;
+      }
+      const format = req.query.format;
+      if (format === undefined || format === 'json') {
+        res.send(ans);
+        return;
+      } else if (format === 'csv') {
+        csv = parse(ans);
+        res.send(csv);
+        return;
+      }
+    })
+  } catch (err) {
+    const format = req.query.format;
+    if (format === undefined || format === 'json') {
+      res.status(500).send({ status: 'Failed', reason: err });
+      return;
+    } else if (format === 'csv') {
+      csv = parse({ status: 'Failed', reason: err });
+      res.status(500).send(csv);
+      return;
+    }
+  }
+};
+
+
+const get_all_answers = (req, res) => {
+  const ID = req.params;
+  const format = req.query.format;
+  if (req.params.questionnaireID === ":questionnaireID") {
+    res.status(400).send({ "status": "missing or invalid parameters" });
+    return;
+  }
+  if (format !== 'json' && format !== 'csv' && format !== undefined) {
+    res.status(400).send({ "status": "missing or invalid parameters" });
+    return;
+  }
+  try {
+    Answer.find({ questionnaireID: ID['questionnaireID'] }).then(function (ans) {
+
+      if (ans.length == 0) {
+        res.status(402).send({ "status": "No data" });
+        return;
+      }
+      const format = req.query.format;
+      if (format === undefined || format === 'json') {
+        res.send(ans);
+        return;
+      } else if (format === 'csv') {
+        csv = parse(ans);
+        res.send(csv);
+        return;
+      }
+    })
+  } catch (err) {
+    const format = req.query.format;
+    if (format === undefined || format === 'json') {
+      res.status(500).send({ status: 'Failed', reason: err });
+      return;
+    } else if (format === 'csv') {
+      csv = parse({ status: 'Failed', reason: err });
+      res.status(500).send(csv);
+      return;
+    }
+  }
+};
+
+
 module.exports = {
   post_questionnaire,
   resetall,
@@ -443,5 +573,8 @@ module.exports = {
   get_questionnaire,
   get_options,
   get_session_answers,
-  get_question_answers
+  get_question_answers,
+  get_all_questionnaire,
+  get_all_question,
+  get_all_answers
 }

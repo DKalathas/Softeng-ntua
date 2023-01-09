@@ -1,5 +1,5 @@
 import React from 'react';
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import './Admin.css';
 
 const Admin = () => {
@@ -9,29 +9,23 @@ const Admin = () => {
         <div className='Admin'>
             <div className='row heading'>
                 <h1 className='text-center col'>Administrative Actions</h1>
-                <button className='col text-center home' onClick={()=>navigate(-1)}>Go Back Home</button>
+                <button className='col text-center home' onClick={() => navigate("/")}>Go Back</button>
             </div>
-            <div className='row'>  
-            <div className='col col1'>
-                <div class="card-body crd1 text-center">
-                        <p class="card-text">This button resets the database and archives all the data.</p>
-                    <button class="btn btn2 heartbeat">Reset All</button>
+            <div className='row'>
+                <div className='col col1'>
+                    <div class="card-body crd1 text-center">
+                        <button class="btn btn2 heartbeat" onClick={() => navigate("/healthcheck")}>Healtcheck</button>
+                    </div>
+                    <div class="card-body crd1 text-center">
+                        <button class="btn btn2 heartbeat" onClick={() => navigate("/all")}>View All Questionnaires</button>
+                    </div>
+                    <div class="card-body crd1 text-center">
+                        <button class="btn btn2 heartbeat" onClick={() => navigate("/allanswers")}>View All Answers</button>
+                    </div>
                 </div>
-                <div class="card-body crd1 text-center">
-                        <p class="card-text">This button checks whether the connection to the database and the api is up.</p>
-                    <button class="btn btn2 heartbeat">Healtcheck</button>
-                </div>
-                <div class="card-body crd1 text-center">
-                        <p class="card-text">This button resets the questionnaire as well as all the answers given.</p>
-                    <button class="btn btn2 heartbeat">Reset questionnaire</button>
-                </div>
-                <div class="card-body crd1 text-center">
-                        <p class="card-text">This button lets you create a new questionnaire.</p>
-                    <button class="btn btn2 heartbeat" onClick={()=>navigate("/upload")}>Upload New Questionnaire</button>
-                </div>
+
             </div>
-            </div>
-         </div>
+        </div>
     )
 };
 
