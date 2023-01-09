@@ -1,1 +1,77 @@
 
+
+/* questionnaire previews / list */
+
+.questionnaire-preview {
+    border-color: #02100c;
+    border-style: solid;
+    border-radius: 10px;
+    margin-left: 15%;
+    margin-right:15%;
+    margin-bottom: 2%;
+    padding: 5px;
+    background-color:#3a3d3a;
+}
+    
+.questionnaire-preview h2 {
+    font-size: 20px;
+    color: #edf2ec;
+    margin-bottom: 8px;
+  }
+.questionnaire-preview a{
+    text-decoration: none;
+  }
+.questionnaire-preview p{
+    text-decoration: none;
+    color: #14342B;
+  }
+
+.questionnaire-details h2 {
+    font-size: 20px;
+    color: #060606;
+    margin-bottom: 10px;
+  }
+.questionnaire-details div {
+    margin: 20px ;
+    color: #14342B;
+  }
+.questionnaire-details button {
+    background: #011801;
+    color: #fff;
+    border: 0;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+.box {
+    width: 300px;
+    border: 15px solid #14342B;
+    padding: 50px;
+    margin: 20px;
+  }
+
+Link{
+    width:100%;
+    min-height:100vh;
+  }
+
+.car5{
+  padding-top: 20px;
+}  
+
+.car6{
+  padding-top: 10%;
+}
+
+.car7{
+  text-decoration: none;
+}
+
+.car8{
+  margin-top:10%;
+  color: #14342B
+}
+
+.col1{
+  margin-top: 5%;
+}
