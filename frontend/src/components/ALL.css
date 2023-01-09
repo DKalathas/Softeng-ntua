@@ -1,0 +1,40 @@
+.questionnaires{
+    margin-top: 5%;
+}
+
+.questionnaire-preview{
+    border-color: #14342B;
+    height: 300px;
+    background-color: darkgray;
+    color:#14342B
+}
+
+.All{
+    color: #14342B;
+}
+
+.carousel-control-next,
+.carousel-control-prev /*, .carousel-indicators */ {
+    filter: invert(100%);
+}
+
+.car{
+    height:300px;
+}
+
+.ID-car{
+    color: #14342B;
+    padding-bottom: 20px;
+}
+
+.Title-car{
+    margin-left: 20px;
+}
+
+.Key-car{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+
+
