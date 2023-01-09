@@ -20,7 +20,7 @@ function App() {
           <Route path="/questionnaire/:id" element={<QuestionnaireDetails />} />
           <Route path="/allanswers" element={<AllAnswers />} />
           <Route path="/answer/:id" element={<AnswerDetails />} />
-          <Route path="/answer/:id/:qid" element={<QuestionDetails />} />
+          <Route path="/answer/:id/:qid/:opt" element={<QuestionDetails />} />
         </Routes>
       </BrowserRouter>
     </>
