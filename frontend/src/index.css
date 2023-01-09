@@ -13,30 +13,29 @@
     background-color:#3a3d3a;
 }
     
-
-  .questionnaire-preview h2 {
+.questionnaire-preview h2 {
     font-size: 20px;
     color: #edf2ec;
     margin-bottom: 8px;
   }
-  .questionnaire-preview a{
+.questionnaire-preview a{
     text-decoration: none;
   }
-  .questionnaire-preview p{
+.questionnaire-preview p{
     text-decoration: none;
     color: #14342B;
   }
 
-  .questionnaire-details h2 {
+.questionnaire-details h2 {
     font-size: 20px;
     color: #060606;
     margin-bottom: 10px;
   }
-  .questionnaire-details div {
+.questionnaire-details div {
     margin: 20px ;
     color: #14342B;
   }
-  .questionnaire-details button {
+.questionnaire-details button {
     background: #011801;
     color: #fff;
     border: 0;
@@ -44,9 +43,19 @@
     border-radius: 8px;
     cursor: pointer;
   }
-  .box {
+.box {
     width: 300px;
     border: 15px solid #14342B;
     padding: 50px;
     margin: 20px;
   }
+
+Link{
+    width:100%;
+    min-height:100vh;
+  }
+
+.car5{
+  padding-top: 20px;
+}  
+
