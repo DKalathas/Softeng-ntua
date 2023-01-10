@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import useFetch from "./useFetch";
+import Card from 'react-bootstrap/Card';
 import { useState } from "react";
 
 const NextQue = () => {
@@ -20,28 +21,29 @@ const NextQue = () => {
             }).then(
                 navigate(`/ques/${idsession}/${qid}/${nextt.next}`))
         } else {
-            navigate('/')
+            navigate('/finish')
         }
 
     }
     return (
         <div>
             <div className='row heading'>
-                <h1 className='text-center col'>Answer the Questionnaire with id :{qid}</h1>
+                <h1 className='text-center col ans4'>Answer the Questionnaire with id :{qid}</h1>
             </div>
             <div className="questionnaire-details" >
                 {isPending && <div className="text-center">Loading...</div>}
                 {error && <div>{error}</div>}
                 {que && que.map(que => (
                     <div key={que.questionnaireID}>
-                        <div className="create">
+                        <div className="create1 text-center">
                             <form onSubmit={handleSubmit}>
-                                <label> {que.qtext}</label>
+                            <Card className="Card"><Card.Body>
+                                <label className="questiontxt text-center"> {que.qtext}</label>
                                 {que.options && que.options.map(option => (
-                                    <div className='box1 text-center car6' key={option.optID}>
+                                    <div className='text-center option' key={option.optID}>
                                         {option.opttxt &&
 
-                                            <div key={option.optID}>
+                                            <div key={option.optID} className="hov text-center">
                                                 <input
                                                     type="radio"
                                                     id="1"
@@ -54,16 +56,15 @@ const NextQue = () => {
                                                     }
                                                     }
                                                 />
-                                                <label htmlFor="1"> {option.opttxt}</label><br />
+                                                <label htmlFor="1" className="text-center">{option.opttxt}</label><br />
 
                                             </div>
                                         }
                                     </div>
                                 ))}
-
-
+                                </Card.Body></Card>
                                 <div className="text-center">
-                                    <button >Next</button>
+                                    <button className="buu">Next</button>
                                 </div>
                             </form>
                         </div>
