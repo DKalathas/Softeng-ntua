@@ -36,7 +36,7 @@
     color: #14342B;
   }
 .questionnaire-details button {
-    background: #011801;
+    background: #14342B;
     color: #fff;
     border: 0;
     padding: 8px;
@@ -76,33 +76,39 @@ Link{
   margin-top: 5%;
 }
 
-.create {
-  max-width: 400px;
-  margin: 0 auto;
-  text-align: center;
+.questiontxt{
+  width:100%;
 }
-.create label {
-  text-align: left;
-  display: block;
+
+.Card{
+  margin-top: 20%;
+  border-style: solid;
+  border-color: #14342B;
 }
-.create h2 {
-  font-size: 20px;
-  color: #f1356d;
-  margin-bottom: 30px;
+
+.option{
+  width:100%;
 }
-.create input, .create textarea, .create select {
-  width: 100%;
-  padding: 6px 10px;
-  margin: 10px 0;
-  border: 1px solid #ddd;
-  box-sizing: border-box;
-  display: block;
+
+.hov:hover{
+  background-color: #14342B;
+  color:#ffff;
+  border-radius: 40%;
 }
-.create button {
-  background: #f1356d;
-  color: #fff;
-  border: 0;
-  padding: 8px;
-  border-radius: 8px;
-  cursor: pointer;
+
+.ans4{
+  margin-bottom: 20px;
+}
+
+.buu{
+  margin-top: 40px;
+}
+
+.finish{
+  color: #14342B;
+  min-height:100vh;
+}
+
+.fin{
+  margin-top: 50px;
 }
