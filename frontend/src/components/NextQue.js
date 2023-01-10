@@ -9,6 +9,7 @@ const NextQue = () => {
     const [queid, setQueid] = useState('');
     const { data: que, error, isPending } = useFetch('http://localhost:4000/intelliq_api/question/' + qid + '/' + nextid);
     const navigate = useNavigate();
+    //ok
     const handleSubmit = (e) => {
         e.preventDefault();
         const nextt = { next, opt, queid };
