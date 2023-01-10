@@ -9,8 +9,8 @@ import AnswerDetails from "./components/AnswerDetails";
 import QuestionDetails from "./components/QuestionDetails";
 import Healthcheck from "./components/Healthcheck";
 import Ques from "./components/User";
-import QuesList from "./components/QuesList";
 import QuesDetails from "./components/QuesDetails";
+import NextQue from "./components/NextQue";
 
 
 function App() {
@@ -29,6 +29,7 @@ function App() {
           <Route path="/answer/:id/:qid/:opt" element={<QuestionDetails />} />
           <Route path='/user' element={<Ques />} />
           <Route path="/ques/:idsession/:qid" element={<QuesDetails />} />
+          <Route path="/ques/:idsession/:qid/:nextid" element={<NextQue />} />
         </Routes>
       </BrowserRouter>
     </>

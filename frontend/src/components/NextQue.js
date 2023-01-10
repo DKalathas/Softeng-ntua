@@ -2,21 +2,25 @@ import { useParams, useNavigate } from "react-router-dom";
 import useFetch from "./useFetch";
 import { useState } from "react";
 
-const QuesDetails = () => {
-    const { idsession, qid } = useParams();
+const NextQue = () => {
+    const { idsession, qid, nextid } = useParams();
     const [next, setNext] = useState('');
     const [opt, setOpt] = useState('');
     const [queid, setQueid] = useState('');
-    const { data: que, error, isPending } = useFetch('http://localhost:4000/intelliq_api/allquestionnaire/' + qid);
+    const { data: que, error, isPending } = useFetch('http://localhost:4000/intelliq_api/question/' + qid + '/' + nextid);
     const navigate = useNavigate();
     const handleSubmit = (e) => {
         e.preventDefault();
         const nextt = { next, opt, queid };
-        fetch(`http://localhost:4000/intelliq_api/doanswer/${qid}/${nextt.queid}/${idsession}/${nextt.opt}`, {
-            method: 'POST',
-            headers: { "Content-Type": "application/json" },
-        }).then(
-            navigate(`/ques/${idsession}/${qid}/${nextt.next}`))
+        if (nextt.next !== '-') {
+            fetch(`http://localhost:4000/intelliq_api/doanswer/${qid}/${nextt.queid}/${idsession}/${nextt.opt}`, {
+                method: 'POST',
+                headers: { "Content-Type": "application/json" },
+            }).then(
+                navigate(`/ques/${idsession}/${qid}/${nextt.next}`))
+        } else {
+            navigate('/')
+        }
 
     }
     return (
@@ -31,15 +35,10 @@ const QuesDetails = () => {
                     <div key={que.questionnaireID}>
                         <div className="create">
                             <form onSubmit={handleSubmit}>
-                                <label> {que.questions[0].qtext}</label>
-                                {que.questions[0].options && que.questions[0].options.map(option => (
+                                <label> {que.qtext}</label>
+                                {que.options && que.options.map(option => (
                                     <div className='box1 text-center car6' key={option.optID}>
-                                        {option.opttxt === "<open string>" && <textarea
-                                            type="text"
-                                            required
-
-                                        ></textarea>}
-                                        {option.opttxt !== "<open string>" &&
+                                        {option.opttxt &&
 
                                             <div key={option.optID}>
                                                 <input
@@ -50,7 +49,7 @@ const QuesDetails = () => {
                                                     onChange={(e) => {
                                                         setNext(e.target.value);
                                                         setOpt(option.optID)
-                                                        setQueid(que.questions[0].qID)
+                                                        setQueid(que.qID)
                                                     }
                                                     }
                                                 />
@@ -74,4 +73,4 @@ const QuesDetails = () => {
     );
 }
 
-export default QuesDetails;
+export default NextQue;
