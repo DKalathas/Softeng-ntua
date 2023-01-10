@@ -1,5 +1,8 @@
 {
   "dependencies": {
-    "react-router-dom": "^6.4.4"
+    "crypto": "^1.0.1",
+    "react-router-dom": "^6.4.4",
+    "uid-safe": "^2.1.5",
+    "uuidv4": "^6.2.13"
   }
 }
