@@ -13,14 +13,14 @@ const Admin = () => {
             </div>
             <div className='row'>
                 <div className='col col1'>
-                    <div class="card-body crd1 text-center">
-                        <button class="btn btn2 heartbeat" onClick={() => navigate("/healthcheck")}>Healtcheck</button>
+                    <div className="card-body crd1 text-center">
+                        <button className="btn btn2 heartbeat" onClick={() => navigate("/healthcheck")}>Healtcheck</button>
                     </div>
-                    <div class="card-body crd1 text-center">
-                        <button class="btn btn2 heartbeat" onClick={() => navigate("/all")}>View All Questionnaires</button>
+                    <div className="card-body crd1 text-center">
+                        <button className="btn btn2 heartbeat" onClick={() => navigate("/all")}>View All Questionnaires</button>
                     </div>
-                    <div class="card-body crd1 text-center">
-                        <button class="btn btn2 heartbeat" onClick={() => navigate("/allanswers")}>View All Answers</button>
+                    <div className="card-body crd1 text-center">
+                        <button className="btn btn2 heartbeat" onClick={() => navigate("/allanswers")}>View All Answers</button>
                     </div>
                 </div>
 
