@@ -36,7 +36,7 @@
     color: #14342B;
   }
 .questionnaire-details button {
-    background: #011801;
+    background: #14342B;
     color: #fff;
     border: 0;
     padding: 8px;
@@ -74,4 +74,41 @@ Link{
 
 .col1{
   margin-top: 5%;
+}
+
+.questiontxt{
+  width:100%;
+}
+
+.Card{
+  margin-top: 20%;
+  border-style: solid;
+  border-color: #14342B;
+}
+
+.option{
+  width:100%;
+}
+
+.hov:hover{
+  background-color: #14342B;
+  color:#ffff;
+  border-radius: 40%;
+}
+
+.ans4{
+  margin-bottom: 20px;
+}
+
+.buu{
+  margin-top: 40px;
+}
+
+.finish{
+  color: #14342B;
+  min-height:100vh;
+}
+
+.fin{
+  margin-top: 50px;
 }
