@@ -14,7 +14,7 @@ const Ques = () => {
             <div className='Answers'>
                 <div className='row heading'>
                     <h1 className='text-center col'>Pick a questionnaire</h1>
-                    <button className='col text-center home' onClick={() => navigate("/admin")}>Go Back Home</button>
+                    <button className='col text-center home' onClick={() => navigate("/")}>Go Back Home</button>
                 </div>
             </div>
             <div className='answers'>
