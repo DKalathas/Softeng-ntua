@@ -12,6 +12,7 @@ import Ques from "./components/User";
 import QuesDetails from "./components/QuesDetails";
 import NextQue from "./components/NextQue";
 import Finish from "./components/Finish";
+import NotFound from "./components/NotFound";
 
 function App() {
 
@@ -30,7 +31,8 @@ function App() {
           <Route path='/user' element={<Ques />} />
           <Route path="/ques/:idsession/:qid" element={<QuesDetails />} />
           <Route path="/ques/:idsession/:qid/:nextid" element={<NextQue />} />
-          <Route path="/finish" element={<Finish />}/>
+          <Route path="/finish" element={<Finish />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </>
