@@ -24,7 +24,7 @@ const AnswerDetails = () => {
                 {isPending && <div className="text-center">Loading...</div>}
                 {error && <div>{error}</div>}
                 {answers && answers.map(answers => (
-                    <div className="questionnaire-preview1 text-center" key={answers.questionnaireID} style={{ padding: 0 }}>
+                    <div className="questionnaire-preview1 text-center" key={answers.session} style={{ padding: 0 }}>
                         <Link to={`/answer/${answers.questionnaireID}/${answers.questionID}/${String(answers.optionID)}`}>
                             <div className="car7">
                                 <p className="car7"><b>Session:</b> {answers.session}</p>
