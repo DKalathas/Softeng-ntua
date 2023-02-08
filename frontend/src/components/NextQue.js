@@ -21,7 +21,7 @@ const NextQue = () => {
             }).then(
                 navigate(`/ques/${idsession}/${qid}/${nextt.next}`))
         } else {
-            navigate('/finish')
+            navigate(`/${idsession}/${qid}/view`)
         }
 
     }
@@ -37,31 +37,31 @@ const NextQue = () => {
                     <div key={que.questionnaireID}>
                         <div className="create1 text-center">
                             <form onSubmit={handleSubmit}>
-                            <Card className="Card"><Card.Body>
-                                <label className="questiontxt text-center"> {que.qtext}</label>
-                                {que.options && que.options.map(option => (
-                                    <div className='text-center option' key={option.optID}>
-                                        {option.opttxt &&
+                                <Card className="Card"><Card.Body>
+                                    <label className="questiontxt text-center"> {que.qtext}</label>
+                                    {que.options && que.options.map(option => (
+                                        <div className='text-center option' key={option.optID}>
+                                            {option.opttxt &&
 
-                                            <div key={option.optID} className="hov text-center">
-                                                <input
-                                                    type="radio"
-                                                    id="1"
-                                                    name="1"
-                                                    value={option.nextqID}
-                                                    onChange={(e) => {
-                                                        setNext(e.target.value);
-                                                        setOpt(option.optID)
-                                                        setQueid(que.qID)
-                                                    }
-                                                    }
-                                                />
-                                                <label htmlFor="1" className="text-center">{option.opttxt}</label><br />
+                                                <div key={option.optID} className="hov text-center">
+                                                    <input
+                                                        type="radio"
+                                                        id="1"
+                                                        name="1"
+                                                        value={option.nextqID}
+                                                        onChange={(e) => {
+                                                            setNext(e.target.value);
+                                                            setOpt(option.optID)
+                                                            setQueid(que.qID)
+                                                        }
+                                                        }
+                                                    />
+                                                    <label htmlFor="1" className="text-center">{option.opttxt}</label><br />
 
-                                            </div>
-                                        }
-                                    </div>
-                                ))}
+                                                </div>
+                                            }
+                                        </div>
+                                    ))}
                                 </Card.Body></Card>
                                 <div className="text-center">
                                     <button className="buu">Next</button>
