@@ -1,0 +1,646 @@
+{
+	"info": {
+		"_postman_id": "0e988464-cafc-43cf-bb7a-cdd9ca0954d1",
+		"name": "test_postman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23878639"
+	},
+	"item": [
+		{
+			"name": "http://localhost:4000/intelliq_api/admin/healthcheck Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Request was successful\", function () {",
+							"  pm.expect(pm.response.code).to.be.oneOf([200, 402]);",
+							"});",
+							"",
+							"pm.test(\"Confirm response json\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    var jsonExp ={",
+							"    \"status\": \"ok\",",
+							"    \"dbconnection\": \"mongodb://docker:mongopw@localhost:55000/Softeng?authSource=admin\"",
+							"}",
+							"  pm.expect(jsonData).is.eql(jsonExp)",
+							"  })"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"questionnaireID\": \"QQ000\",\r\n \"questionnaireTitle\": \"My first research questionnaire\",\r\n \"keywords\": [\r\n \"footbal\",\r\n \"islands\",\r\n \"timezone\"\r\n ],\r\n \"questions\": [\r\n {\r\n \"qID\": \"P00\",\r\n \"qtext\": \"Ποιο είναι το mail σας;\",\r\n \"required\": \"FALSE\",\r\n \"type\": \"profile\",\r\n \"options\": [\r\n {\r\n \"optID\": \"P00TXT\",\r\n \"opttxt\": \"<open string>\",\r\n \"nextqID\": \"P01\"\r\n }\r\n ]\r\n },\r\n {\r\n \"qID\": \"P01\",\r\n \"qtext\": \"Ποια είναι η ηλικία σας;\",\r\n \"required\": \"TRUE\",\r\n \"type\": \"profile\",\r\n \"options\": [\r\n {\r\n \"optID\": \"P01A1\",\r\n \"opttxt\": \"<30\",\r\n \"nextqID\": \"Q01\"\r\n },\r\n {\r\n \"optID\": \"P01A2\",\r\n \"opttxt\": \"30-50\",\r\n \"nextqID\": \"Q01\"\r\n },\r\n {\r\n \"optID\": \"P01A3\",\r\n \"opttxt\": \"50-70\",\r\n \"nextqID\": \"Q01\"\r\n },\r\n {\r\n \"optID\": \"P01A4\",\r\n \"opttxt\": \">70\",\r\n \"nextqID\": \"Q01\"\r\n }\r\n ]\r\n },\r\n {\r\n \"qID\": \"Q01\",\r\n \"qtext\": \"Ποιο είναι το αγαπημένο σας χρώμα;\",\r\n \"required\": \"TRUE\",\r\n \"type\": \"question\",\r\n \"options\": [\r\n {\r\n \"optID\": \"Q01A1\",\r\n \"opttxt\": \"Πράσινο\",\r\n \"nextqID\": \"Q02\"\r\n },\r\n{\r\n \"optID\": \"Q01A2\",\r\n \"opttxt\":\"Κόκκινο\",\r\n \"nextqID\": \"Q02\"\r\n },\r\n{\r\n \"optID\": \"Q01A3\",\r\n \"opttxt\":\"Κίτρινο\",\r\n \"nextqID\": \"Q02\"\r\n\r\n}\r\n]\r\n },\r\n\r\n{\r\n \"qID\": \"Q02\"\r\n,\r\n \"qtext\":\r\n\"Ασχολείστε με το ποδόσφαιρο;\"\r\n,\r\n \"required\": \"TRUE\"\r\n,\r\n \"type\": \"question\"\r\n,\r\n \"options\": [\r\n\r\n{\r\n \"optID\": \"Q02A1\"\r\n,\r\n \"opttxt\":\"Ναι\",\r\n \"nextqID\": \"Q03\"\r\n },\r\n{\r\n \"optID\": \"Q02A2\"\r\n,\r\n \"opttxt\":\"Οχι\",\r\n \"nextqID\": \"Q04\"\r\n}\r\n]\r\n},\r\n{\r\n \"qID\": \"Q03\",\r\n \"qtext\":\"Τι ομάδα είστε;\",\r\n \"required\": \"TRUE\",\r\n \"type\": \"question\",\r\n \"options\": [\r\n{\r\n \"optID\": \"Q03A1\",\r\n \"opttxt\":\"Παναθηναϊκός\",\r\n \"nextqID\": \"Q04\"\r\n },\r\n{\r\n \"optID\": \"Q03A2\",\r\n \"opttxt\":\"Ολυμπιακός \",\r\n \"nextqID\": \"Q04\"\r\n },\r\n{\r\n \"optID\": \"Q03A3\",\r\n \"opttxt\":\"ΑΕΚ\",\r\n \"nextqID\": \"Q04\"\r\n}\r\n]\r\n },\r\n{\r\n \"qID\": \"Q04\",\r\n \"qtext\":\"Έχετε ζήσει σε νησί;\",\r\n \"required\": \"TRUE\",\r\n \"type\": \"question\",\r\n \"options\": [\r\n{\r\n \"optID\": \"Q04A1\",\r\n \"opttxt\":\"Ναι\",\r\n \"nextqID\": \"Q05\"\r\n },\r\n {\r\n \"optID\": \"Q04A2\",\r\n \"opttxt\": \"Οχι\",\r\n \"nextqID\": \"Q06\"\r\n }\r\n ]\r\n },\r\n {\r\n \"qID\": \"Q05\",\r\n \"qtext\": \"Με δεδομένο ότι απαντήσατε [*Q04A1] στην ερώτηση [*Q04]: Ποια η σχέση σας με το θαλάσσιο σκι;\",\r\n \"required\": \"TRUE\",\r\n \"type\": \"question\",\r\n \"options\": [\r\n {\r\n \"optID\": \"Q05A1\",\r\n \"opttxt\": \"Καμία\",\r\n \"nextqID\": \"Q07\"\r\n },\r\n {\r\n \"optID\": \"Q05A2\",\r\n \"opttxt\": \"Μικρή\",\r\n \"nextqID\": \"Q07\"\r\n },\r\n {\r\n \"optID\": \"Q05A3\",\r\n \"opttxt\": \"Μεγάλη\",\r\n \"nextqID\": \"Q07\"\r\n }\r\n ]\r\n },\r\n {\r\n \"qID\": \"Q06\",\r\n \"qtext\": \"Είστε χειμερινός κολυμβητής\",\r\n \"required\": \"TRUE\",\r\n \"type\": \"question\",\r\n \"options\": [\r\n {\r\n \"optID\": \"Q06A1\",\r\n \"opttxt\": \"Ναι\",\r\n \"nextqID\": \"Q07\"\r\n },\r\n {\r\n \"optID\": \"Q06A2\",\r\n \"opttxt\": \"Οχι\",\r\n \"nextqID\": \"Q07\"\r\n }\r\n ]\r\n },\r\n {\r\n \"qID\": \"Q07\",\r\n \"qtext\": \"Κάνετε χειμερινό σκι;\",\r\n \"required\": \"TRUE\",\r\n \"type\": \"question\",\r\n \"options\": [\r\n {\r\n \"optID\": \"Q07A1\",\r\n \"opttxt\": \"Σπάνια - καθόλου\",\r\n \"nextqID\": \"Q08\"\r\n },\r\n {\r\n \"optID\": \"Q07A2\",\r\n \"opttxt\": \"Περιστασιακά\",\r\n \"nextqID\": \"Q08\"\r\n },\r\n {\r\n \"optID\": \"Q07A3\",\r\n \"opttxt\": \"Τακτικά\",\r\n \"nextqID\": \"Q08\"\r\n }\r\n ]\r\n },\r\n {\r\n \"qID\": \"Q08\",\r\n \"qtext\": \"Συμφωνείτε να αλλάζει η ώρα κάθε χρόνο;\",\r\n \"required\": \"TRUE\",\r\n \"type\": \"question\",\r\n \"options\": [\r\n {\r\n \"optID\": \"Q08A1\",\r\n \"opttxt\": \"Ναι\",\r\n \"nextqID\": \"Q09\"\r\n },\r\n {\r\n \"optID\": \"Q08A2\",\r\n \"opttxt\": \"Οχι\",\r\n \"nextqID\": \"-\"\r\n }\r\n ]\r\n },\r\n {\r\n \"qID\": \"Q09\",\r\n \"qtext\": \"Με δεδομένο ότι απαντήσατε [*Q08A2] στην ερώτηση [*Q08]: Προτιμάτε τη θερινή ή την χειμερινή ώρα\",\r\n \"required\": \"TRUE\",\r\n \"type\": \"question\",\r\n \"options\": [\r\n {\r\n \"optID\": \"Q09A1\",\r\n \"opttxt\": \"Θερινή\",\r\n \"nextqID\": \"-\"\r\n },\r\n {\r\n \"optID\": \"Q09A2\",\r\n \"opttxt\": \"Χειμερινή\",\r\n \"nextqID\": \"-\"\r\n }\r\n ]\r\n }\r\n ]\r\n}    ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/intelliq_api/admin/healthcheck?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"intelliq_api",
+						"admin",
+						"healthcheck"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/intelliq_api/admin/questionnaire_upd Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Request was successful\", function () {",
+							"  pm.expect(pm.response.code).to.be.oneOf([200, 402]);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"questionnaireID\": \"QQ000\",\r\n  \"questionnaireTitle\": \"My first research questionnaire\",\r\n  \"keywords\": [\"football\"],\r\n  \"questions\": [\r\n    {\r\n      \"qID\": \"Q01\",\r\n      \"qtext\": \"Ποια είναι η ηλικία σας;\",\r\n      \"required\": \"TRUE\",\r\n      \"type\": \"profile\",\r\n      \"options\": [\r\n        {\r\n          \"optID\": \"Q01A1\",\r\n          \"opttxt\": \"<30\",\r\n          \"nextqID\": \"Q02\"\r\n        },\r\n        {\r\n          \"optID\": \"Q01A2\",\r\n          \"opttxt\": \"30-50\",\r\n          \"nextqID\": \"Q02\"\r\n        },\r\n        {\r\n          \"optID\": \"Q01A3\",\r\n          \"opttxt\": \"50-70\",\r\n          \"nextqID\": \"Q02\"\r\n        },\r\n        {\r\n          \"optID\": \"Q01A4\",\r\n          \"opttxt\": \">70\",\r\n          \"nextqID\": \"Q02\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"qID\": \"Q02\",\r\n      \"qtext\": \"Τι ομάδα είστε;\",\r\n      \"required\": \"TRUE\",\r\n      \"type\": \"profile\",\r\n      \"options\": [\r\n        {\r\n          \"optID\": \"Q02A1\",\r\n          \"opttxt\": \"Παναθηναϊκός\",\r\n          \"nextqID\": \"P01\"\r\n        },\r\n        {\r\n          \"optID\": \"Q02A2\",\r\n          \"opttxt\": \"Ολυμπιακός\",\r\n          \"nextqID\": \"O01\"\r\n        },\r\n        {\r\n          \"optID\": \"Q02A3\",\r\n          \"opttxt\": \"ΑΕΚ\",\r\n          \"nextqID\": \"A01\"\r\n        },\r\n        {\r\n          \"optID\": \"Q02A4\",\r\n          \"opttxt\": \"ΠΑΟΚ\",\r\n          \"nextqID\": \"K01\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"qID\": \"P01\",\r\n      \"qtext\": \"Έχετε ζήσει πρωτάθλημα με τον Παναθηναϊκό?\",\r\n      \"required\": \"TRUE\",\r\n      \"type\": \"question\",\r\n      \"options\": [\r\n        {\r\n          \"optID\": \"P01A1\",\r\n          \"opttxt\": \"Ναι\",\r\n          \"nextqID\": \"P02\"\r\n        },\r\n\r\n        {\r\n          \"optID\": \"P01A2\",\r\n          \"opttxt\": \"Οχι\",\r\n          \"nextqID\": \"Q03\"\r\n        }\r\n      ]\r\n    },\r\n\r\n    {\r\n      \"qID\": \"P02\",\r\n      \"qtext\": \"Ποια χρονία ήταν?\",\r\n      \"required\": \"TRUE\",\r\n      \"type\": \"question\",\r\n      \"options\": [\r\n        {\r\n          \"optID\": \"P02A1\",\r\n          \"opttxt\": \"2009-2010\",\r\n          \"nextqID\": \"P03\"\r\n        },\r\n\r\n        {\r\n          \"optID\": \"P02A2\",\r\n          \"opttxt\": \"2003-2004\",\r\n          \"nextqID\": \"P04\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"qID\": \"P03\",\r\n      \"qtext\": \"Ποιος ήταν ο αγαπημένος παίχτης σας?\",\r\n      \"required\": \"TRUE\",\r\n      \"type\": \"question\",\r\n      \"options\": [\r\n        {\r\n          \"optID\": \"P03A1\",\r\n          \"opttxt\": \"Σισε\",\r\n          \"nextqID\": \"Q03\"\r\n        },\r\n\r\n        {\r\n          \"optID\": \"P03A2\",\r\n          \"opttxt\": \"Καραγκουνης\",\r\n          \"nextqID\": \"Q03\"\r\n        },\r\n        {\r\n          \"optID\": \"P03A3\",\r\n          \"opttxt\": \"Νινης\",\r\n          \"nextqID\": \"Q03\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"qID\": \"P04\",\r\n      \"qtext\": \"Ποιος ήταν ο αγαπημένος παίχτης σας?\",\r\n      \"required\": \"TRUE\",\r\n      \"type\": \"question\",\r\n      \"options\": [\r\n        {\r\n          \"optID\": \"P04A1\",\r\n          \"opttxt\": \"Παπαδόπουλος\",\r\n          \"nextqID\": \"Q03\"\r\n        },\r\n\r\n        {\r\n          \"optID\": \"P04A2\",\r\n          \"opttxt\": \"Έμπαλε\",\r\n          \"nextqID\": \"Q03\"\r\n        },\r\n        {\r\n          \"optID\": \"P04A3\",\r\n          \"opttxt\": \"Γκονζάλες\",\r\n          \"nextqID\": \"Q03\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"qID\": \"O01\",\r\n      \"qtext\": \"Έχετε ζήσει πρωτάθλημα (δίκαιο) με τον Ολυμπιακό?\",\r\n      \"required\": \"TRUE\",\r\n      \"type\": \"question\",\r\n      \"options\": [\r\n        {\r\n          \"optID\": \"O01A1\",\r\n          \"opttxt\": \"Ναι\",\r\n          \"nextqID\": \"O02\"\r\n        },\r\n\r\n        {\r\n          \"optID\": \"O01A2\",\r\n          \"opttxt\": \"Οχι\",\r\n          \"nextqID\": \"Q03\"\r\n        }\r\n      ]\r\n    },\r\n\r\n    {\r\n      \"qID\": \"O02\",\r\n      \"qtext\": \"Ποια χρονία ήταν?\",\r\n      \"required\": \"TRUE\",\r\n      \"type\": \"question\",\r\n      \"options\": [\r\n        {\r\n          \"optID\": \"O02A1\",\r\n          \"opttxt\": \"2021-2022\",\r\n          \"nextqID\": \"O03\"\r\n        },\r\n\r\n        {\r\n          \"optID\": \"O02A2\",\r\n          \"opttxt\": \"2008-2009\",\r\n          \"nextqID\": \"O04\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"qID\": \"O03\",\r\n      \"qtext\": \"Ποιος ήταν ο αγαπημένος παίχτης σας?\",\r\n      \"required\": \"TRUE\",\r\n      \"type\": \"question\",\r\n      \"options\": [\r\n        {\r\n          \"optID\": \"O03A1\",\r\n          \"opttxt\": \"Παπασταθόπουλος\",\r\n          \"nextqID\": \"Q03\"\r\n        },\r\n\r\n        {\r\n          \"optID\": \"O03A2\",\r\n          \"opttxt\": \"Ελ Αραμπί\",\r\n          \"nextqID\": \"Q03\"\r\n        },\r\n        {\r\n          \"optID\": \"O03A3\",\r\n          \"opttxt\": \"Μασούρας\",\r\n          \"nextqID\": \"Q03\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"qID\": \"O04\",\r\n      \"qtext\": \"Ποιος ήταν ο αγαπημένος παίχτης σας?\",\r\n      \"required\": \"TRUE\",\r\n      \"type\": \"question\",\r\n      \"options\": [\r\n        {\r\n          \"optID\": \"O04A1\",\r\n          \"opttxt\": \"Ντιογκο\",\r\n          \"nextqID\": \"Q03\"\r\n        },\r\n\r\n        {\r\n          \"optID\": \"O04A2\",\r\n          \"opttxt\": \"Τζορτζεβιτς\",\r\n          \"nextqID\": \"Q03\"\r\n        },\r\n        {\r\n          \"optID\": \"O04A3\",\r\n          \"opttxt\": \"Αβρααμ\",\r\n          \"nextqID\": \"Q03\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"qID\": \"A01\",\r\n      \"qtext\": \"Έχετε ζήσει πρωτάθλημα με την ΑΕΚ (νέο ΑΦΜ)?\",\r\n      \"required\": \"TRUE\",\r\n      \"type\": \"question\",\r\n      \"options\": [\r\n        {\r\n          \"optID\": \"Α01A1\",\r\n          \"opttxt\": \"Ναι\",\r\n          \"nextqID\": \"Α02\"\r\n        },\r\n\r\n        {\r\n          \"optID\": \"Α01A2\",\r\n          \"opttxt\": \"Οχι\",\r\n          \"nextqID\": \"Q03\"\r\n        }\r\n      ]\r\n    },\r\n\r\n    {\r\n      \"qID\": \"Α02\",\r\n      \"qtext\": \"Ποια χρονία ήταν?\",\r\n      \"required\": \"TRUE\",\r\n      \"type\": \"question\",\r\n      \"options\": [\r\n        {\r\n          \"optID\": \"Α02A1\",\r\n          \"opttxt\": \"2017-2018\",\r\n          \"nextqID\": \"Α03\"\r\n        },\r\n\r\n        {\r\n          \"optID\": \"Α02A2\",\r\n          \"opttxt\": \"Αλλη\",\r\n          \"nextqID\": \"Α04\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"qID\": \"Α03\",\r\n      \"qtext\": \"Ποιος ήταν ο αγαπημένος παίχτης σας?\",\r\n      \"required\": \"TRUE\",\r\n      \"type\": \"question\",\r\n      \"options\": [\r\n        {\r\n          \"optID\": \"Α03A1\",\r\n          \"opttxt\": \"Σιμοες\",\r\n          \"nextqID\": \"A04\"\r\n        },\r\n\r\n        {\r\n          \"optID\": \"A03A2\",\r\n          \"opttxt\": \"Χριστοδουλόπουλος\",\r\n          \"nextqID\": \"A04\"\r\n        },\r\n        {\r\n          \"optID\": \"A03A3\",\r\n          \"opttxt\": \"Κονε\",\r\n          \"nextqID\": \"A04\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"qID\": \"A04\",\r\n      \"qtext\": \"Μετράνε τα 2 εκατοστά στο δοκάρι?\",\r\n      \"required\": \"TRUE\",\r\n      \"type\": \"question\",\r\n      \"options\": [\r\n        {\r\n          \"optID\": \"A04A1\",\r\n          \"opttxt\": \"Ναι\",\r\n          \"nextqID\": \"Q03\"\r\n        },\r\n\r\n        {\r\n          \"optID\": \"A04A2\",\r\n          \"opttxt\": \"Οχι\",\r\n          \"nextqID\": \"Q03\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"qID\": \"K01\",\r\n      \"qtext\": \"Έχετε ζήσει πρωτάθλημα με τον ΠΑΟΚ?\",\r\n      \"required\": \"TRUE\",\r\n      \"type\": \"question\",\r\n      \"options\": [\r\n        {\r\n          \"optID\": \"K01A1\",\r\n          \"opttxt\": \"Ναι\",\r\n          \"nextqID\": \"K02\"\r\n        },\r\n\r\n        {\r\n          \"optID\": \"K01A2\",\r\n          \"opttxt\": \"Οχι\",\r\n          \"nextqID\": \"Q03\"\r\n        }\r\n      ]\r\n    },\r\n\r\n    {\r\n      \"qID\": \"K02\",\r\n      \"qtext\": \"Πόσα θα έπρεπε να είχατε ακόμα σύμφωνα με τον Λουτσεσκου?\",\r\n      \"required\": \"TRUE\",\r\n      \"type\": \"question\",\r\n      \"options\": [\r\n        {\r\n          \"optID\": \"K02A1\",\r\n          \"opttxt\": \"2\",\r\n          \"nextqID\": \"K03\"\r\n        },\r\n\r\n        {\r\n          \"optID\": \"K02A2\",\r\n          \"opttxt\": \"Ολα\",\r\n          \"nextqID\": \"K03\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"qID\": \"K03\",\r\n      \"qtext\": \"Ποιος ήταν ο αγαπημένος σας διαιτητής ?\",\r\n      \"required\": \"TRUE\",\r\n      \"type\": \"question\",\r\n      \"options\": [\r\n        {\r\n          \"optID\": \"K03A1\",\r\n          \"opttxt\": \"Λαοθ\",\r\n          \"nextqID\": \"Q03\"\r\n        },\r\n\r\n        {\r\n          \"optID\": \"K03A2\",\r\n          \"opttxt\": \"Κακος\",\r\n          \"nextqID\": \"Q03\"\r\n        },\r\n        {\r\n          \"optID\": \"K03A3\",\r\n          \"opttxt\": \"Σπάθας\",\r\n          \"nextqID\": \"Q03\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"qID\": \"Q03\",\r\n      \"qtext\": \"Που κρίνονται τα πρωταθλήματα?\",\r\n      \"required\": \"TRUE\",\r\n      \"type\": \"profile\",\r\n      \"options\": [\r\n        {\r\n          \"optID\": \"Q03A1\",\r\n          \"opttxt\": \"Γηπεδα\",\r\n          \"nextqID\": \"Q04\"\r\n        },\r\n        {\r\n          \"optID\": \"Q03A2\",\r\n          \"opttxt\": \"Δικαστήρια\",\r\n          \"nextqID\": \"Q04\"\r\n        },\r\n        {\r\n          \"optID\": \"Q03A3\",\r\n          \"opttxt\": \"Στα εκατοστά του δοκαριού\",\r\n          \"nextqID\": \"Q04\"\r\n        },\r\n        {\r\n          \"optID\": \"Q03A4\",\r\n          \"opttxt\": \"Στην φαντασία του Λουτσεσκου\",\r\n          \"nextqID\": \"Q04\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"qID\": \"Q04\",\r\n      \"qtext\": \"Μπορεί να βελτιωθεί το πρωταθλήματα?\",\r\n      \"required\": \"TRUE\",\r\n      \"type\": \"profile\",\r\n      \"options\": [\r\n        {\r\n          \"optID\": \"Q04A1\",\r\n          \"opttxt\": \"Ναι\",\r\n          \"nextqID\": \"Q05\"\r\n        },\r\n        {\r\n          \"optID\": \"Q04A2\",\r\n          \"opttxt\": \"Οχι\",\r\n          \"nextqID\": \"Q05\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"qID\": \"Q05\",\r\n      \"qtext\": \"Μπορεί η χώρα μας να φιλοξενήσει Μουντιάλ?\",\r\n      \"required\": \"TRUE\",\r\n      \"type\": \"profile\",\r\n      \"options\": [\r\n        {\r\n          \"optID\": \"Q05A1\",\r\n          \"opttxt\": \"Ναι\",\r\n          \"nextqID\": \"-\"\r\n        },\r\n        {\r\n          \"optID\": \"Q05A2\",\r\n          \"opttxt\": \"Οχι\",\r\n          \"nextqID\": \"-\"\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/intelliq_api/admin/questionnaire_upd?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"intelliq_api",
+						"admin",
+						"questionnaire_upd"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/intelliq_api/doanswer/:questionnaireID/:questionID/:session/:optionID Copy 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Request was successful\", function () {",
+							"  pm.expect(pm.response.code).to.be.oneOf([200, 402]);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/intelliq_api/doanswer/:questionnaireID/:questionID/:session/:optionID?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"intelliq_api",
+						"doanswer",
+						":questionnaireID",
+						":questionID",
+						":session",
+						":optionID"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "QQ000"
+						},
+						{
+							"key": "questionID",
+							"value": "Q01"
+						},
+						{
+							"key": "session",
+							"value": "001"
+						},
+						{
+							"key": "optionID",
+							"value": "Q02A2"
+						}
+					]
+				},
+				"description": "doanswer"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/intelliq_api/questionnaire/:questionnaireID Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Request was successful\", function () {",
+							"  pm.expect(pm.response.code).to.be.oneOf([200, 402]);",
+							"});",
+							"",
+							"pm.test(\"Confirm response json\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    var jsonExp =[",
+							"    {",
+							"        \"questionnaireID\": \"QQ000\",",
+							"        \"questionnaireTitle\": \"My first research questionnaire\",",
+							"        \"keywords\": [",
+							"            \"football\"",
+							"        ],",
+							"        \"questions\": [",
+							"            {",
+							"                \"qID\": \"Q01\",",
+							"                \"qtext\": \"Ποια είναι η ηλικία σας;\",",
+							"                \"required\": \"TRUE\",",
+							"                \"type\": \"profile\"",
+							"            },",
+							"            {",
+							"                \"qID\": \"Q02\",",
+							"                \"qtext\": \"Τι ομάδα είστε;\",",
+							"                \"required\": \"TRUE\",",
+							"                \"type\": \"profile\"",
+							"            },",
+							"            {",
+							"                \"qID\": \"P01\",",
+							"                \"qtext\": \"Έχετε ζήσει πρωτάθλημα με τον Παναθηναϊκό?\",",
+							"                \"required\": \"TRUE\",",
+							"                \"type\": \"question\"",
+							"            },",
+							"            {",
+							"                \"qID\": \"P02\",",
+							"                \"qtext\": \"Ποια χρονία ήταν?\",",
+							"                \"required\": \"TRUE\",",
+							"                \"type\": \"question\"",
+							"            },",
+							"            {",
+							"                \"qID\": \"P03\",",
+							"                \"qtext\": \"Ποιος ήταν ο αγαπημένος παίχτης σας?\",",
+							"                \"required\": \"TRUE\",",
+							"                \"type\": \"question\"",
+							"            },",
+							"            {",
+							"                \"qID\": \"P04\",",
+							"                \"qtext\": \"Ποιος ήταν ο αγαπημένος παίχτης σας?\",",
+							"                \"required\": \"TRUE\",",
+							"                \"type\": \"question\"",
+							"            },",
+							"            {",
+							"                \"qID\": \"O01\",",
+							"                \"qtext\": \"Έχετε ζήσει πρωτάθλημα (δίκαιο) με τον Ολυμπιακό?\",",
+							"                \"required\": \"TRUE\",",
+							"                \"type\": \"question\"",
+							"            },",
+							"            {",
+							"                \"qID\": \"O02\",",
+							"                \"qtext\": \"Ποια χρονία ήταν?\",",
+							"                \"required\": \"TRUE\",",
+							"                \"type\": \"question\"",
+							"            },",
+							"            {",
+							"                \"qID\": \"O03\",",
+							"                \"qtext\": \"Ποιος ήταν ο αγαπημένος παίχτης σας?\",",
+							"                \"required\": \"TRUE\",",
+							"                \"type\": \"question\"",
+							"            },",
+							"            {",
+							"                \"qID\": \"O04\",",
+							"                \"qtext\": \"Ποιος ήταν ο αγαπημένος παίχτης σας?\",",
+							"                \"required\": \"TRUE\",",
+							"                \"type\": \"question\"",
+							"            },",
+							"            {",
+							"                \"qID\": \"A01\",",
+							"                \"qtext\": \"Έχετε ζήσει πρωτάθλημα με την ΑΕΚ (νέο ΑΦΜ)?\",",
+							"                \"required\": \"TRUE\",",
+							"                \"type\": \"question\"",
+							"            },",
+							"            {",
+							"                \"qID\": \"Α02\",",
+							"                \"qtext\": \"Ποια χρονία ήταν?\",",
+							"                \"required\": \"TRUE\",",
+							"                \"type\": \"question\"",
+							"            },",
+							"            {",
+							"                \"qID\": \"Α03\",",
+							"                \"qtext\": \"Ποιος ήταν ο αγαπημένος παίχτης σας?\",",
+							"                \"required\": \"TRUE\",",
+							"                \"type\": \"question\"",
+							"            },",
+							"            {",
+							"                \"qID\": \"A04\",",
+							"                \"qtext\": \"Μετράνε τα 2 εκατοστά στο δοκάρι?\",",
+							"                \"required\": \"TRUE\",",
+							"                \"type\": \"question\"",
+							"            },",
+							"            {",
+							"                \"qID\": \"K01\",",
+							"                \"qtext\": \"Έχετε ζήσει πρωτάθλημα με τον ΠΑΟΚ?\",",
+							"                \"required\": \"TRUE\",",
+							"                \"type\": \"question\"",
+							"            },",
+							"            {",
+							"                \"qID\": \"K02\",",
+							"                \"qtext\": \"Πόσα θα έπρεπε να είχατε ακόμα σύμφωνα με τον Λουτσεσκου?\",",
+							"                \"required\": \"TRUE\",",
+							"                \"type\": \"question\"",
+							"            },",
+							"            {",
+							"                \"qID\": \"K03\",",
+							"                \"qtext\": \"Ποιος ήταν ο αγαπημένος σας διαιτητής ?\",",
+							"                \"required\": \"TRUE\",",
+							"                \"type\": \"question\"",
+							"            },",
+							"            {",
+							"                \"qID\": \"Q03\",",
+							"                \"qtext\": \"Που κρίνονται τα πρωταθλήματα?\",",
+							"                \"required\": \"TRUE\",",
+							"                \"type\": \"profile\"",
+							"            },",
+							"            {",
+							"                \"qID\": \"Q04\",",
+							"                \"qtext\": \"Μπορεί να βελτιωθεί το πρωταθλήματα?\",",
+							"                \"required\": \"TRUE\",",
+							"                \"type\": \"profile\"",
+							"            },",
+							"            {",
+							"                \"qID\": \"Q05\",",
+							"                \"qtext\": \"Μπορεί η χώρα μας να φιλοξενήσει Μουντιάλ?\",",
+							"                \"required\": \"TRUE\",",
+							"                \"type\": \"profile\"",
+							"            }",
+							"        ]",
+							"    }",
+							"]",
+							"  pm.expect(jsonData).is.eql(jsonExp)",
+							"  })"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/intelliq_api/questionnaire/:questionnaireID?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"intelliq_api",
+						"questionnaire",
+						":questionnaireID"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "QQ000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/intelliq_api/question/:questionnaireID/:questionID Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Request was successful\", function () {",
+							"  pm.expect(pm.response.code).to.be.oneOf([200, 402]);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/intelliq_api/question/:questionnaireID/:questionID?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"intelliq_api",
+						"question",
+						":questionnaireID",
+						":questionID"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "QQ000"
+						},
+						{
+							"key": "questionID",
+							"value": "Q01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/intelliq_api/getsessionanswers/:questionnaireID/:session Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Request was successful\", function () {",
+							"  pm.expect(pm.response.code).to.be.oneOf([200, 402]);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Confirm response json\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    var jsonExp =[",
+							"    {",
+							"        \"questionnaireID\": \"QQ000\",",
+							"        \"session\": \"001\",",
+							"        \"answers\": [",
+							"            {",
+							"                \"questionID\": \"Q01\",",
+							"                \"ans\": \"Q02A2\"",
+							"            }",
+							"        ]",
+							"    }",
+							"]",
+							"  pm.expect(jsonData).is.eql(jsonExp)",
+							"  })"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/intelliq_api/getsessionanswers/:questionnaireID/:session?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"intelliq_api",
+						"getsessionanswers",
+						":questionnaireID",
+						":session"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "QQ000"
+						},
+						{
+							"key": "session",
+							"value": "001"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/intelliq_api/getquestionanswers/:questionnaireID/:questionID Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Request was successful\", function () {",
+							"  pm.expect(pm.response.code).to.be.oneOf([200, 402]);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Confirm response json\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    var jsonExp =[",
+							"    {",
+							"        \"questionnaireID\": \"QQ000\",",
+							"        \"questionID\": \"Q01\",",
+							"        \"answers\": [",
+							"            {",
+							"                \"session\": \"001\",",
+							"                \"ans\": \"Q02A2\"",
+							"            }",
+							"        ]",
+							"    }",
+							"]",
+							"  pm.expect(jsonData).is.eql(jsonExp)",
+							"  })"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/intelliq_api/getquestionanswers/:questionnaireID/:questionID?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"intelliq_api",
+						"getquestionanswers",
+						":questionnaireID",
+						":questionID"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "QQ000"
+						},
+						{
+							"key": "questionID",
+							"value": "Q01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/intelliq_api/admin/resetq/:questionnaireID Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Request was successful\", function () {",
+							"  pm.expect(pm.response.code).to.be.oneOf([200, 402]);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/intelliq_api/admin/resetq/:questionnaireID?format=csv",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"intelliq_api",
+						"admin",
+						"resetq",
+						":questionnaireID"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "csv"
+						}
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "QQ007"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/intelliq_api/admin/resetall Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Request was successful\", function () {",
+							"  pm.expect(pm.response.code).to.be.oneOf([200, 402]);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/intelliq_api/admin/resetall?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"intelliq_api",
+						"admin",
+						"resetall"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
