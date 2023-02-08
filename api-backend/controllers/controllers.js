@@ -7,6 +7,8 @@ const converter = require('json-2-csv')
 require('dotenv').config();
 
 
+// add new questionnaire to db
+
 const post_questionnaire = (req, res, next) => {
   const format = req.query.format;
   if (format !== 'json' && format !== 'csv' && format !== undefined) {
@@ -35,6 +37,8 @@ const post_questionnaire = (req, res, next) => {
     }
   })
 }
+
+//perform healthcheck
 
 const get_healthcheck = (req, res) => {
   const format = req.query.format;
@@ -71,6 +75,9 @@ const get_healthcheck = (req, res) => {
     })
 }
 
+
+// reset all
+
 const resetall = async (req, res) => {
   const format = req.query.format;
   if (format !== 'json' && format !== 'csv' && format !== undefined) {
@@ -102,6 +109,9 @@ const resetall = async (req, res) => {
     }
   }
 };
+
+
+//post answer
 
 const addAnswer = async (req, res, next) => {
   const format = req.query.format;
@@ -142,6 +152,9 @@ const addAnswer = async (req, res, next) => {
   };
 };
 
+
+//reset answers per question
+
 const resetq = async (req, res) => {
 
   const ID = req.params;
@@ -177,6 +190,9 @@ const resetq = async (req, res) => {
     }
   }
 }
+
+
+//get questionnaire based on qID
 
 const get_questionnaire = (req, res) => {
   const ID = req.params;
@@ -218,6 +234,9 @@ const get_questionnaire = (req, res) => {
     }
   }
 };
+
+
+//get question of a questionnaire based on IDs
 
 const get_options = (req, res) => {
   const query = req.params;
@@ -284,6 +303,9 @@ const get_options = (req, res) => {
     }
   }
 };
+
+
+//get answer on questionnaire id and on session
 
 const get_session_answers = (req, res) => {
   const query = req.params;
@@ -361,6 +383,8 @@ const get_session_answers = (req, res) => {
   }
 };
 
+
+//get question on questionnaire ID and on question ID
 
 const get_question_answers = (req, res) => {
   const query = req.params;
