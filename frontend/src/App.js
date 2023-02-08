@@ -13,6 +13,8 @@ import QuesDetails from "./components/QuesDetails";
 import NextQue from "./components/NextQue";
 import Finish from "./components/Finish";
 import NotFound from "./components/NotFound";
+import Viewall from "./components/Viewall";
+import ViewDetails from "./components/ViewDetails";
 
 function App() {
 
@@ -31,6 +33,8 @@ function App() {
           <Route path='/user' element={<Ques />} />
           <Route path="/ques/:idsession/:qid" element={<QuesDetails />} />
           <Route path="/ques/:idsession/:qid/:nextid" element={<NextQue />} />
+          <Route path="/:idsession/:qid/view" element={<Viewall />} />
+          <Route path="/answer/:id/:qid/:opt/view" element={<ViewDetails />} />
           <Route path="/finish" element={<Finish />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

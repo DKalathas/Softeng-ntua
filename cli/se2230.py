@@ -15,6 +15,8 @@ def cli():
     """
     pass
 
+##perform healthcheck
+
 @click.command()
 @click.option('--format', help = 'Choose format (json or csv)', required = 'True', metavar = '[csv/json]')
 def healthcheck(format):
@@ -34,6 +36,8 @@ def healthcheck(format):
     return True
     
     
+## reset all
+    
 @click.command()
 @click.option('--format', help = 'Choose format (json or csv)', required = 'True', metavar = '[csv/json]')
 def resetall(format):
@@ -51,6 +55,8 @@ def resetall(format):
         click.echo(res.content)
     return True
    
+    
+ ##add new questionnaire to db   
     
 @click.command()
 @click.option('--source', help = 'Upload a file', required = 'True', metavar = '<filename>')
@@ -76,6 +82,9 @@ def questionnaire_upd(source,format):
     f.close()
     return True
 
+
+##reset answers per question
+
 @click.command()
 @click.option('--questionnaire_id', help = 'delete all answers from a questionnaire', required = 'True', metavar = '<questionnaire_id>')
 @click.option('--format', help = 'Choose format (json or csv)', required = 'True', metavar = '[csv/json]')
@@ -95,6 +104,8 @@ def resetq(questionnaire_id,format):
         click.echo(res.content)
     return True
 
+
+##get questionnaire based on qID
 
 @click.command()
 @click.option('--questionnaire_id', help = 'Find a questionnaire', required = 'True', metavar = '<questionnaire_id>')
@@ -116,6 +127,8 @@ def questionnaire(questionnaire_id,format):
     return True
     
 
+##get question of a questionnaire based on IDs
+
 @click.command()
 @click.option('--questionnaire_id', help = 'Find a questionnaire', required = 'True', metavar = '<questionnaire_id>')
 @click.option('--question_id', help = 'Find a question', required = 'True', metavar = '<question_id>')
@@ -136,6 +149,9 @@ def question(questionnaire_id,question_id,format):
         click.echo(res.content)
     return True
 
+
+
+##post answer
 
 @click.command()
 @click.option('--questionnaire_id', help = 'Find a questionnaire', required = 'True', metavar = '<questionnaire_id>')
@@ -160,6 +176,7 @@ def doanswer(questionnaire_id,question_id,session_id,option_id,format):
     return True
 
 
+##get answer on questionnaire id and on session
 
 @click.command()
 @click.option('--questionnaire_id', help = 'Find a questionnaire', required = 'True', metavar = '<questionnaire_id>')
@@ -180,6 +197,9 @@ def getsessionanswers(questionnaire_id,session_id,format):
     elif(format == 'csv' ):
         click.echo(res.content)
     return True
+    
+    
+##get question on questionnaire ID and on question ID    
     
 @click.command()
 @click.option('--questionnaire_id', help = 'Find a questionnaire', required = 'True', metavar = '<questionnaire_id>')
