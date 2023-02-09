@@ -66,6 +66,7 @@ print()
 
 
 ## Αρχικοποίηση (resetall) ##
+
 input('press enter for resetall ..')
 print()
 
