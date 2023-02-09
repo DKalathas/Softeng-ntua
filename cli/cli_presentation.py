@@ -70,6 +70,7 @@ print()
 input('press enter for resetall ..')
 print()
 
+
 command = "python3 se2230.py resetall --format json"
 
 process = Popen(command, shell=True, stdout=PIPE, stderr=PIPE)
