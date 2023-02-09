@@ -143,7 +143,6 @@ const addAnswer = async (req, res, next) => {
 };
 
 const resetq = async (req, res) => {
-
   const ID = req.params;
   const format = req.query.format;
   if (req.params.questionnaireID === ":questionnaireID") {
@@ -155,7 +154,7 @@ const resetq = async (req, res) => {
     return;
   }
   try {
-    await Answer.deleteMany({ qID: ID })
+    await Answer.deleteMany({ questionnaireID: ID.questionnaireID })
     const format = req.query.format;
     if (format === undefined || format === 'json') {
       res.send({ status: 'OK' });
