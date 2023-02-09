@@ -4,6 +4,7 @@ sys.path.insert(0,'./cli')
 from cli.se2230 import cli
 from click.testing import CliRunner
 
+#test connectivity with the db using the cli app
 def test_healtcheck():
 	runner = CliRunner()
 	result = runner.invoke(cli,["healthcheck","--format","json"])
@@ -13,9 +14,53 @@ def test_healtcheck():
 	assert result.exit_code == 0
 	assert output['status'] == 'ok'
 
+#test 402 code
+#def test_402():
 
+#test if we can upload a new questionnaire
+def test_upd1():
+	runner = CliRunner()
+	with runner.isolated_filesystem():
+		with open("file.txt", "w") as f:
+			f.write(json.dumps(que1))
+		result = runner.invoke(cli, ["questionnaire-upd", "--source", "file.txt","--format","json"])
+		status_code, output = result.output.split('\n')[:2]
+	assert int(status_code) == 200
+	assert result.exit_code == 0
 
+#test if we can post two answers
+def test_doanswer():
+  runner = CliRunner()
+  result = runner.invoke(cli,["doanswer","--questionnaire_id","QQ001","--question_id","Q01","--session_id","0001","--option_id","Q02A2","--format","json"])
+  status_code, output = result.output.split('\n')[:2]
+  output = json.loads(output)
+  result1 = runner.invoke(cli,["doanswer","--questionnaire_id","QQ000","--question_id","Q01","--session_id","0002","--option_id","Q02A2","--format","json"])
+  status_code1, output1 = result.output.split('\n')[:2]
+  output1 = json.loads(output1)
+  assert int(status_code) == 200
+  assert result.exit_code == 0
+  assert output["questionnaireID"] == ans["questionnaireID"]
+  assert output["questionID"] == ans["questionID"]
+  assert output["session"] == ans["session"]
+  assert output["optionID"] == ans["optionID"]
+  assert int(status_code1) == 200
+  assert result1.exit_code == 0
+  assert output1["questionnaireID"] == ans["questionnaireID"]
+  assert output1["questionID"] == ans["questionID"]
+  assert output1["session"] == ans["session"]
+  assert output1["optionID"] == ans["optionID"]
 
+#test resetq
+def test_resetq():
+	runner = CliRunner()
+	result = runner.invoke(cli,["resetq","--questionnaire_id","QQ000","--format","json"])
+	status_code, output = result.output.split('\n')[:2]
+	output = json.loads(output)
+	assert int(status_code) == 200
+	assert result.exit_code == 0
+	assert output['status'] == 'OK'
+
+#test the reset all using the cli app
 def test_resetall():
 	runner = CliRunner()
 	result = runner.invoke(cli,["resetall","--format","json"])
@@ -25,11 +70,17 @@ def test_resetall():
 	assert result.exit_code == 0
 	assert output['status'] == 'OK'
 
-def test_upd1():
-	runner = CliRunner()
-	with runner.isolated_filesystem():
-		with open("file.txt", "w") as f:
-			f.write(json.dumps({
+
+
+
+ans = {
+    "questionnaireID": "QQ001",
+    "questionID": "Q01",
+    "session": "0001",
+    "optionID": "Q02A2",
+}
+
+que1 = {
   "questionnaireID": "QQ001",
   "questionnaireTitle": "My first research questionnaire",
   "keywords": ["football"],
@@ -475,12 +526,3 @@ def test_upd1():
     }
   ]
 }
-))
-		with open("file.txt", "r") as f:
-			file_contents = f.read()
-	
-		result = runner.invoke(cli, ["questionnaire-upd", "--source", "file.txt","--format","json"], input=file_contents)
-		status_code, output = result.output.split('\n')[:2]
-		assert int(status_code) == 200
-		assert result.exit_code == 0
-
