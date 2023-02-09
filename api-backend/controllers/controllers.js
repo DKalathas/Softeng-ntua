@@ -350,7 +350,6 @@ const get_session_answers = (req, res) => {
           '_id': 0,
           'questionnaireID': '$_id.questionnaireID',
           'session': '$_id.session',
-          'qID': '$questionID',
           'answers': '$answers'
         }
       }
