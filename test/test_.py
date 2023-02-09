@@ -14,9 +14,6 @@ def test_healtcheck():
 	assert result.exit_code == 0
 	assert output['status'] == 'ok'
 
-#test 402 code
-#def test_402():
-
 #test if we can upload a new questionnaire
 def test_upd1():
 	runner = CliRunner()
@@ -31,10 +28,10 @@ def test_upd1():
 #test if we can post two answers
 def test_doanswer():
   runner = CliRunner()
-  result = runner.invoke(cli,["doanswer","--questionnaire_id","QQ001","--question_id","Q01","--session_id","0001","--option_id","Q02A2","--format","json"])
+  result = runner.invoke(cli,["doanswer","--questionnaire_id","QQ001","--question_id","Q01","--session_id","0001","--option_id","Q01A1","--format","json"])
   status_code, output = result.output.split('\n')[:2]
   output = json.loads(output)
-  result1 = runner.invoke(cli,["doanswer","--questionnaire_id","QQ000","--question_id","Q01","--session_id","0002","--option_id","Q02A2","--format","json"])
+  result1 = runner.invoke(cli,["doanswer","--questionnaire_id","QQ000","--question_id","Q01","--session_id","0002","--option_id","Q01A1","--format","json"])
   status_code1, output1 = result.output.split('\n')[:2]
   output1 = json.loads(output1)
   assert int(status_code) == 200
@@ -50,6 +47,38 @@ def test_doanswer():
   assert output1["session"] == ans["session"]
   assert output1["optionID"] == ans["optionID"]
 
+#test questionnaire endpoint using questionnaire QQ000
+def test_questionnaire():
+	runner = CliRunner()
+	result = runner.invoke(cli,["questionnaire","--questionnaire_id","QQ001","--format","json"])
+	status_code, output = result.output.split('\n')[:2]
+	output = json.loads(output)
+	assert int(status_code) == 200
+	assert result.exit_code == 0
+	assert output[0]['questionnaireID'] == 'QQ001'
+	assert output[0]['questions'][0]['qID'] == 'Q01'
+	assert output[0]['questions'][1]['qID'] == 'Q02'
+	assert output[0]['questions'][2]['qID'] == 'P01'
+	assert output[0]['questions'][3]['qID'] == 'P02'
+	assert output[0]['questions'][4]['qID'] == 'P03'
+	assert output[0]['questions'][5]['qID'] == 'P04'
+	assert output[0]['questions'][6]['qID'] == 'O01'
+	assert output[0]['questions'][7]['qID'] == 'O02'
+	assert output[0]['questions'][8]['qID'] == 'O03'
+	assert output[0]['questions'][9]['qID'] == 'O04'
+	assert output[0]['questions'][10]['qID'] == 'A01'
+	assert output[0]['questions'][11]['qID'] == 'Α02'
+	assert output[0]['questions'][12]['qID'] == 'Α03'
+	assert output[0]['questions'][13]['qID'] == 'A04'
+	assert output[0]['questions'][14]['qID'] == 'K01'
+	assert output[0]['questions'][15]['qID'] == 'K02'
+	assert output[0]['questions'][16]['qID'] == 'K03'
+	assert output[0]['questions'][17]['qID'] == 'Q03'
+	assert output[0]['questions'][18]['qID'] == 'Q04'
+	assert output[0]['questions'][19]['qID'] == 'Q05'
+
+#test question endpoint using questionnaireID QQ001 and qID  
+
 #test resetq
 def test_resetq():
 	runner = CliRunner()
@@ -59,6 +88,16 @@ def test_resetq():
 	assert int(status_code) == 200
 	assert result.exit_code == 0
 	assert output['status'] == 'OK'
+
+#test 402 code and outcome of resetq using addanswers
+def test_402():
+	runner = CliRunner()
+	result = runner.invoke(cli,["getallanswers","--questionnaire_id","QQ000","--format","json"])
+	status_code, output = result.output.split('\n')[:2]
+	output = json.loads(output)
+	assert int(status_code) == 402
+	assert result.exit_code == 0
+	assert output['status'] == "No data"
 
 #test the reset all using the cli app
 def test_resetall():
@@ -77,7 +116,7 @@ ans = {
     "questionnaireID": "QQ001",
     "questionID": "Q01",
     "session": "0001",
-    "optionID": "Q02A2",
+    "optionID": "Q01A1",
 }
 
 que1 = {
