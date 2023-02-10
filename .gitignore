@@ -5,3 +5,4 @@ cli/.env
 .pytest_cache
 cli/__pycache__
 test/__pycache__
+/node_modules

@@ -20,6 +20,9 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
 //take data from request
 app.use(bodyParser.json());
 app.use(cors());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 
 //initialize routes

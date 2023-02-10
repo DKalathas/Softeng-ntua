@@ -2,15 +2,35 @@ const express = require('express');
 const router = express.Router();
 const controllers = require('../controllers/controllers');
 var multer = require('multer')
-const upload = multer()
+var path = require('path');
+var mkdirp = require('mkdirp');
+var obj = {};
+var diskStorage = multer.diskStorage({
 
+    destination: function (req, file, cb) {
+
+        var dest = path.join(__dirname, '../../data/questionnaires');
+
+        mkdirp(dest, function (err) {
+            if (err) cb(err, dest);
+            else cb(null, dest);
+        });
+    },
+    filename: function (req, file, cb) {
+        var ext = path.extname(file.originalname);
+        var file_name = Date.now() + ext;
+        obj.file_name = file_name;
+        cb(null, file_name);
+    }
+});
+var upload = multer({ storage: diskStorage });
 
 //------------------------------------------------Administrative---------------------------------------------
 //perform healthcheck
 router.get("/admin/healthcheck", controllers.get_healthcheck);
 
 // add new questionnaire to db
-router.post("/admin/questionnaire_upd", upload.none(), controllers.post_questionnaire);
+router.post("/admin/questionnaire_upd", upload.single('file'), controllers.post_questionnaire);
 
 // reset all
 router.post("/admin/resetall", controllers.resetall);
