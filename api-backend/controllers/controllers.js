@@ -3,7 +3,6 @@ const Answer = require("../models/answers")
 const mongoose = require('mongoose');
 const Answers = require("../models/answers");
 const { parse } = require('json2csv');
-const converter = require('json-2-csv')
 require('dotenv').config();
 
 
