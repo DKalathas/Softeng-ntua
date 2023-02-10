@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const controllers = require('../controllers/controllers');
 var multer = require('multer')
-
+const upload = multer()
 
 
 //------------------------------------------------Administrative---------------------------------------------
@@ -10,7 +10,7 @@ var multer = require('multer')
 router.get("/admin/healthcheck", controllers.get_healthcheck);
 
 // add new questionnaire to db
-router.post("/admin/questionnaire_upd", upload(), controllers.post_questionnaire);
+router.post("/admin/questionnaire_upd", upload.none(), controllers.post_questionnaire);
 
 // reset all
 router.post("/admin/resetall", controllers.resetall);
