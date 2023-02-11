@@ -3,6 +3,7 @@ const Answer = require("../models/answers")
 const mongoose = require('mongoose');
 const Answers = require("../models/answers");
 const { parse } = require('json2csv');
+const fs = require('fs');
 require('dotenv').config();
 
 
@@ -14,28 +15,61 @@ const post_questionnaire = (req, res, next) => {
     res.status(400).send({ "status": "missing or invalid parameters" });
     return;
   }
-  Questionnaire.create(req.body).then(function (questionnaire) {
-    const format = req.query.format;
-    if (format === undefined || format === 'json') {
-      res.send(questionnaire);
-      return;
-    } else if (format === 'csv') {
-      csv = parse(questionnaire);
-      res.send(csv);
-      return;
-    }
-  }).catch(err => {
-    const format = req.query.format;
-    if (format === undefined || format === 'json') {
-      res.status(500).send(err);
-      return;
-    } else {
-      csv = parse(err);
-      res.status(500).send(csv);
-      return;
-    }
-  })
+  if (req.file !== undefined) {
+    fs.readFile(req.file.path, 'utf8', (err, data) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      //console.log(data);
+      Questionnaire.create(JSON.parse(data)).then(function (questionnaire) {
+        const format = req.query.format;
+        if (format === undefined || format === 'json') {
+          res.send(questionnaire);
+          return;
+        } else if (format === 'csv') {
+          csv = parse(questionnaire);
+          res.send(csv);
+          return;
+        }
+      }).catch(err => {
+        const format = req.query.format;
+        if (format === undefined || format === 'json') {
+          res.status(500).send(err);
+          return;
+        } else {
+          csv = parse(err);
+          res.status(500).send(csv);
+          return;
+        }
+      })
+    })
+  }
+  else {
+    Questionnaire.create(req.body).then(function (questionnaire) {
+      const format = req.query.format;
+      if (format === undefined || format === 'json') {
+        res.send(questionnaire);
+        return;
+      } else if (format === 'csv') {
+        csv = parse(questionnaire);
+        res.send(csv);
+        return;
+      }
+    }).catch(err => {
+      const format = req.query.format;
+      if (format === undefined || format === 'json') {
+        res.status(500).send(err);
+        return;
+      } else {
+        csv = parse(err);
+        res.status(500).send(csv);
+        return;
+      }
+    })
+  }
 }
+
 
 //perform healthcheck
 
