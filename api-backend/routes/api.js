@@ -32,7 +32,7 @@ var upload = multer({ storage: diskStorage });
 router.get("/admin/healthcheck", controllers.get_healthcheck);
 
 // add new questionnaire to db
-router.post("/admin/questionnaire_upd", controllers.post_questionnaire);
+router.post("/admin/questionnaire_upd", upload.single('file'), controllers.post_questionnaire);
 
 // reset all
 router.post("/admin/resetall", controllers.resetall);
