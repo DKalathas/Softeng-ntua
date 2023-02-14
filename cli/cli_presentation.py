@@ -18,7 +18,7 @@ raw_out = producedOutput.decode("utf-8")
 print(raw_out)
 print()
 
-
+ 
 
 ### Εμφάνιση του ερωτηματολογίου που περιέχει η βάση ###
 
