@@ -1,11 +1,42 @@
 {
 	"info": {
-		"_postman_id": "aa0adcf9-af14-483f-a930-7f9053b2cd10",
+		"_postman_id": "23b3cde1-d099-458d-a580-e207cc245448",
 		"name": "postman_presentaion",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "23878639"
 	},
 	"item": [
+		{
+			"name": "http://localhost:4000/intelliq_api/admin/resetall Copy 2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:4000/intelliq_api/admin/resetall?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"intelliq_api",
+						"admin",
+						"resetall"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
 		{
 			"name": "http://localhost:4000/intelliq_api/admin/questionnaire_upd Copy",
 			"request": {

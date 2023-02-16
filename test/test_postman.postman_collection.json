@@ -7,6 +7,47 @@
 	},
 	"item": [
 		{
+			"name": "http://localhost:4000/intelliq_api/admin/resetall Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Request was successful\", function () {",
+							"  pm.expect(pm.response.code).to.be.oneOf([200, 402]);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/intelliq_api/admin/resetall?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"intelliq_api",
+						"admin",
+						"resetall"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "http://localhost:4000/intelliq_api/admin/healthcheck Copy",
 			"event": [
 				{
@@ -602,7 +643,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:4000/intelliq_api/admin/resetall Copy",
+			"name": "http://localhost:4000/intelliq_api/admin/resetall Copy 2",
 			"event": [
 				{
 					"listen": "test",
