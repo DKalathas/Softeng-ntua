@@ -21,7 +21,7 @@ Members: el18016, el18163, el18152, el18649
 • **GitHub** ως περιβάλλον διαχείρισης κώδικα και διαχείρισης έργου <br>
 • **Visual Paradigm** ως εργαλείο παραγωγής διαγραμμάτων UML <br>
 • **Υλοποίηση κώδικα:** Python, javascript με nodejs/express <br>
-• **Διαχείριση δεδομένων:** MongoDB
+• **Διαχείριση δεδομένων:** MongoDB <br>
 • **Frontend:** React
 
 
