@@ -10,7 +10,8 @@ const app = express();
 
 
 // connect to mongodb & listen for requests
-const dbURI = process.env.DATABASE_URI;
+//const dbURI = process.env.DATABASE_URI;
+const dbURI = "mongodb://docker:mongopw@localhost:55000/Softeng?authSource=admin"
 
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(result => app.listen(4000))
@@ -29,7 +30,7 @@ app.use(cors());
 app.use("/intelliq_api", routes);
 
 //error handling middleware
-app.use(function(err, req, res, next) {
-    //console.log(err);
-    res.status(422).send( { error:err.message } )
+app.use(function (err, req, res, next) {
+  //console.log(err);
+  res.status(422).send({ error: err.message })
 });
