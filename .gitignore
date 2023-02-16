@@ -1,6 +1,4 @@
 api-backend/node_modules
-api-backend/.env
-cli/.env
 .vscode
 .pytest_cache
 cli/__pycache__

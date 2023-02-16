@@ -10,8 +10,8 @@ const app = express();
 
 
 // connect to mongodb & listen for requests
-//const dbURI = process.env.DATABASE_URI;
-const dbURI = "mongodb://docker:mongopw@localhost:55000/Softeng?authSource=admin"
+const dbURI = process.env.DATABASE_URI;
+
 
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(result => app.listen(4000))
