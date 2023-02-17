@@ -4,7 +4,6 @@ from dotenv import load_dotenv
 from pathlib import Path
 
 
-
 ## Επιβεβαίωση της λειτουργίας (healthcheck) ##
 input('press enter for healthcheck..')
 print()
@@ -31,7 +30,7 @@ process = Popen(command, shell=True, stdout=PIPE, stderr=PIPE)
 producedOutput, err = process.communicate()
 raw_out = producedOutput.decode("utf-8")
 
-print(raw_out)
+print(raw_out.encode().decode('unicode-escape'))
 print()
 
 
@@ -97,8 +96,7 @@ command = "python3 se2230.py questionnaire-upd --source "+path+ " --format json"
 process = Popen(command, shell=True, stdout=PIPE, stderr=PIPE)
 producedOutput, err = process.communicate()
 raw_out = producedOutput.decode("utf-8")
-
-print(raw_out)
+print(raw_out.encode().decode('unicode-escape'))
 print()
 
 
@@ -114,7 +112,7 @@ process = Popen(command, shell=True, stdout=PIPE, stderr=PIPE)
 producedOutput, err = process.communicate()
 raw_out = producedOutput.decode("utf-8")
 
-print(raw_out)
+print(raw_out.encode().decode('unicode-escape'))
 print()
 
 input('This is the end...')
