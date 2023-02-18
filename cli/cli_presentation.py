@@ -85,10 +85,10 @@ print()
 input('press enter for Ανέβασμα ερωτηματολογίου ..')
 print()
 
-dotenv_path = Path('/Users/tassos/Desktop/22-23/SoftEng22-30/cli/.env')
+dotenv_path = Path('path env')
 load_dotenv(dotenv_path=dotenv_path)
 
-path = '/Users/tassos/Desktop/22-23/SoftEng22-30/data/questionnaires/final.json'
+path = 'Your path'
 #print(path)
 
 command = "python3 se2230.py questionnaire-upd --source "+path+ " --format json"
